@@ -5,12 +5,12 @@ using QuanLyCanTeen.Areas.Admin.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using QuanLyCanTeen.Areas.Common;
 
 namespace QuanLyCanTeen.Areas.Admin.Controllers
 {
     public class LoginController : Controller
     {
-        DBEntities db = new DBEntities();
         // GET: Admin/Login
         public ActionResult Index()
         {
@@ -27,10 +27,11 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = Login(model.Email, model.PassWord);
+                dbCommon db = new dbCommon(); // <-- declare object from class dbCommon (using directory path)
+                var result = db.Login(model.Email, model.PassWord);
                 if (result == 0)
                 {
-                    var user = GetById(model.Email);
+                    var user = db.GetById(model.Email);
                     var userSession = new UserLogin();
                     userSession.FULL_NAME = user.FULL_NAME;
                     userSession.ID = user.ID;
@@ -48,7 +49,7 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
                     Session.Add("USER_SECTION", userSession);
 
                     ViewBag.Message = "Something went wrong";
-                    return RedirectToAction("Index", "SanPham");
+                    return RedirectToAction("Index", "FOODs");
                 }
                 else if (result == -2)
                 {
@@ -66,23 +67,8 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             return View("index");
         }
 
-        public int Login(string email, string passWord)
-        {
-            var result = db.ACCOUNTs.SingleOrDefault(x => x.EMAIL == email);
-            if (result == null)
-                return -1;
-            else
-            {
-                if (result.PASSWORD == passWord)
-                    return 0;
-                else
-                    return -2;
-            }
-        }
+        
 
-        public ACCOUNT GetById(string email)
-        {
-            return db.ACCOUNTs.SingleOrDefault(x => x.EMAIL == email);
-        }
+       
     }
 }

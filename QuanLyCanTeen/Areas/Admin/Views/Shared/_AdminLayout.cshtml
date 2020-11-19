@@ -14,7 +14,6 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Right navbar links -->
@@ -29,7 +28,7 @@
                         <a href="#" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
-                                <img src="~/Images/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                <img src="~/Images/credit/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         Brad Diesel
@@ -45,7 +44,7 @@
                         <a href="#" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
-                                <img src="~/Images/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <img src="~/Images/credit/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         John Pierce
@@ -61,7 +60,7 @@
                         <a href="#" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
-                                <img src="~/Images/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <img src="~/Images/credit/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         Nora Silvester
@@ -117,7 +116,7 @@
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
 
-                <img src="~/Images/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                <img src="~/Images/credit/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                      style="opacity: .8">
                 <span class="brand-text font-weight-light">VANLANG CANTEEN</span>
             </a>
@@ -128,7 +127,7 @@
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
 
-                        <img src="~/Images/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        <img src="~/Images/credit/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">Lý Thị Huyền Châu</a>
@@ -139,7 +138,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                             with font-awesome or any other icon font library -->
+                        with font-awesome or any other icon font library -->
                         <li class="nav-item has-treeview menu-open">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -150,28 +149,33 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="/Admin/CategoryAdmin" class="nav-link active">
+                                    <a href="~/Admin/CATEGORies/Index" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Loại món ăn</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/Admin/Food" class="nav-link">
+                                    <a href="~/Admin/FOODs/Index" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Món ăn</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/Admin/Account" class="nav-link">
+                                    <a href="~/Admin/ACCOUNTs/Index" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Tài khoản</p>
                                     </a>
                                 </li>
+
                             </ul>
                         </li>
                     </ul>
+
                 </nav>
                 <!-- /.sidebar-menu -->
+                <ul class="layout-footer-fixed">
+                    <li><a href="@Url.Action("Logout","Login")" class="revicon-logout">Logout</a></li>
+                </ul>
             </div>
             <!-- /.sidebar -->
         </aside>
@@ -187,7 +191,7 @@
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                                <li class="breadcrumb-item"><a href="#">@ViewBag.Controller</a></li>
                                 <li class="breadcrumb-item active">@ViewBag.Title</li>
                             </ol>
                         </div><!-- /.col -->
@@ -224,6 +228,7 @@
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
+
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/daterangepicker.js"></script>
     <script src="~/Scripts/jquery.dataTables.js"></script>
@@ -231,7 +236,25 @@
     <script src="~/Scripts/dataTables.bootstrap4.js"></script>
     <script src="~/Scripts/adminlte.js"></script>
     <script src="~/Scripts/demo.js"></script>
-
+    <script src="~/Plugins/ckfinder/ckfinder.js"></script>
+    <script src="~/Plugins/ckeditor/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            notify();
+        });
+        function notify() {
+            $.notify("@Html.Raw(TempData["AlertMessage"])", "@Html.Raw(TempData["Type"])");
+        }
+    </script>
+    <script>
+        $(function () {
+            $(".nav-link").on('click', function (e) {
+                $("a.nav-link.active").removeClass('nav-link active').addClass('nav-link');
+                $(this).addClass("nav-link active"); //Add "active" class to selected tab
+            });
+        });
+    </script>
     <script>
         $(function () {
             $("#example1").DataTable();
@@ -241,5 +264,6 @@
         });
     </script>
 
+    @RenderSection("ckFinder", required: false)
 </body>
 </html>
