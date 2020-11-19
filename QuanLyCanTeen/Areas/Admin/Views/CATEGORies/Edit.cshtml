@@ -5,7 +5,9 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-
+@section ckFinder{
+    <script src="~/Scripts/ckFinder.js"></script>
+}
 
 @using (Html.BeginForm())
 {
@@ -39,7 +41,6 @@
                     <div class="col-md-5">
                         <input type="text" name="IMAGE_URL" id="txtImage" value="@Model.IMAGE_URL" class="form-control" readonly="readonly" />
                         @Html.ValidationMessageFor(model => model.IMAGE_URL, "", new { @class = "text-danger" })
-
                     </div>
                     <div class="col-md-6">
                         <input id="btnSelectImage" style="height:calc(2.25rem + 2px);" src="#" type="button" class="button" value="Chọn Ảnh" />
