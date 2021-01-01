@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CATEGORY_CODE, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CATEGORY_CODE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.CATEGORY_CODE, new { htmlAttributes = new { @class = "form-control", @required = true, @minLength="1", @maxLength="3" } })
                 @Html.ValidationMessageFor(model => model.CATEGORY_CODE, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CATEGORY_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CATEGORY_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.CATEGORY_NAME, new { htmlAttributes = new { @class = "form-control", @required = true, @minLength = "2", @maxLength = "100" } })
                 @Html.ValidationMessageFor(model => model.CATEGORY_NAME, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -38,7 +38,7 @@
             <div class="col-md-10">
                 <div class="row">
                     <div class="col-md-5">
-                        <input type="text" name="IMAGE_URL" id="txtImage" class="form-control" readonly="readonly" />
+                        <input type="text" name="IMAGE_URL" id="txtImage" class="form-control" required readonly="readonly"  />
                         @Html.ValidationMessageFor(model => model.IMAGE_URL, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-6">

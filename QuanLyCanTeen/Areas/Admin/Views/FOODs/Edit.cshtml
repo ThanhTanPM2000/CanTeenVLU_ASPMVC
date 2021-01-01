@@ -22,7 +22,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.FOOD_CODE, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.FOOD_CODE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.FOOD_CODE, new { htmlAttributes = new { @class = "form-control", @required = true, @minLength = "1", @maxLength = "4" } })
                     @Html.ValidationMessageFor(model => model.FOOD_CODE, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -30,7 +30,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.FOOD_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.FOOD_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.FOOD_NAME, new { htmlAttributes = new { @class = "form-control", @required = true, @minLength = "2", @maxLength = "100" } })
                     @Html.ValidationMessageFor(model => model.FOOD_NAME, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -55,7 +55,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.PRICE, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.PRICE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.PRICE, new { htmlAttributes = new { @class = "form-control", @required = true, @type = "number", @max = "1000000000", @min = "1000" } })
                     @Html.ValidationMessageFor(model => model.PRICE, "", new { @class = "text-danger" })
                 </div>
             </div>

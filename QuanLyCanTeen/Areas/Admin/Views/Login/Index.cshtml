@@ -37,14 +37,14 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @required = true })
                             </div>
                             @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                                 </div>
-                                @Html.PasswordFor(model => model.PassWord, new { @class = "form-control" })
+                                @Html.PasswordFor(model => model.PassWord, new { @class = "form-control", @required = true })
                             </div>
 
                             <div class="form-group">

@@ -9,6 +9,7 @@ namespace QuanLyCanTeen.Areas.Admin.Data
     public class UserLogin
     {
         public int ID { set; get; }
+
         public string EMAIL { set; get; }
         public string FULL_NAME { set; get; }
         public string PASSWORD { set; get; }

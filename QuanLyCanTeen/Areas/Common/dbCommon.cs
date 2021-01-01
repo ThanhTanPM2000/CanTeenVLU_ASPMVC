@@ -81,5 +81,25 @@ namespace QuanLyCanTeen.Areas.Common
         }
         #endregion
 
+
+        public IEnumerable<CUSTOMER> ListCus(string searchString, int page, int pageSize)
+        {
+            IQueryable<CUSTOMER> model = db.CUSTOMERs.OrderByDescending(x => x.ID);
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(x => x.FULL_NAME.Contains(searchString));
+            }
+            return model.OrderByDescending(x => x.ID).ToList().ToPagedList(page, pageSize);
+        }
+
+        public IEnumerable<ORDER> ListOrder(string searchString, int page, int pageSize)
+        {
+            IQueryable<ORDER> model = db.ORDERs.OrderByDescending(x => x.ID);
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(x => x.CUSTOMER.EMAIL.Contains(searchString));
+            }
+            return model.OrderByDescending(x => x.ID).ToList().ToPagedList(page, pageSize);
+        }
     }
 }

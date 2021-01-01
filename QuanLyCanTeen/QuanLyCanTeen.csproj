@@ -61,6 +61,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\For Learning\VanLang\C#\Megaphone_Project\Demo_MegaPhone\Demo_MegaPhone\bin\CKFinder_Watermark.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -136,12 +142,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -195,8 +195,12 @@
     <Compile Include="Areas\Admin\Controllers\ACCOUNTsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CATEGORiesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CheckSessionsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CUSTOMERsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FACULTiesController.cs" />
     <Compile Include="Areas\Admin\Controllers\FOODsController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MENUsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ORDERsController.cs" />
     <Compile Include="Areas\Admin\Data\LoginModel.cs" />
     <Compile Include="Areas\Admin\Data\UserLogin.cs" />
     <Compile Include="Areas\Common\dbCommon.cs" />
@@ -277,6 +281,7 @@
     <Content Include="Content\login.css" />
     <Content Include="Content\OverlayScrollbars.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\style4.css" />
     <Content Include="Content\summernote-bs4.css" />
     <Content Include="Content\tempusdominus-bootstrap-4.min.css" />
@@ -287,6 +292,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\logovanlang.png" />
     <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -1398,6 +1404,29 @@
     <Content Include="Models\Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\ORDERs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ORDERs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ORDERs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ORDERs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ORDERs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ORDERs\Print.cshtml" />
+    <Content Include="Areas\Admin\Views\CUSTOMERs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CUSTOMERs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CUSTOMERs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CUSTOMERs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CUSTOMERs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\FACULTies\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\FACULTies\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\FACULTies\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\FACULTies\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\FACULTies\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MENUs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\MENUs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\MENUs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\MENUs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\MENUs\Index.cshtml" />
+    <Content Include="fonts\SourceSansPro-Regular.ttf" />
+    <Content Include="Areas\Admin\Views\ORDERs\Index - Copy.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\ckFinder.js" />
@@ -1464,7 +1493,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

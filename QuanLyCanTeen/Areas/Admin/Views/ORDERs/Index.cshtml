@@ -1,0 +1,92 @@
+﻿@*model IEnumerable<QuanLyCanTeen.Models.ORDER>*@
+@model PagedList.IPagedList<QuanLyCanTeen.Models.ORDER>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-7">
+            @using (Html.BeginForm("Index", "ORDERs", FormMethod.Get))
+            {
+                <div class="input-group md-form form-sm form-2 pl-0">
+                    <input class="form-control" type="text" value="@ViewBag.SearchString" name="searchString" placeholder="Bạn tìm gì ..." aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="input-group-text red lighten-3">
+                            <span id="basic-text1">
+                                <i class="fas fa-search text-grey"
+                                   aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-5">
+            <a class="btn btn-info" style="height:calc(2.25rem + 2px);" href="@Url.Action("Create","ORDERs")">Thêm Loại Món Ăn</a>
+        </div>
+    </div>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    ORDER CODE
+                </th>
+                <th>
+                    DATE
+                </th>
+                <th>
+                    STATUS
+                </th>
+                <th>
+                    FEEDBACK
+                </th>
+                <th>
+                    ADMIN EMAIL
+                </th>
+                <th>
+                    CUSTOMER EMAIL
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ORDER_CODE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DATE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.STATUS)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FEEDBACK)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ACCOUNT.EMAIL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CUSTOMER.EMAIL)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
+                        @Html.ActionLink("Print", "Print", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }))
