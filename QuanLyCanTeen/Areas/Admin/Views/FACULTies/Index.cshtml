@@ -1,46 +1,75 @@
-﻿@model IEnumerable<QuanLyCanTeen.Models.FACULTY>
-
+﻿@model PagedList.IPagedList<QuanLyCanTeen.Models.FACULTY>
+@using PagedList;
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Faculity</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-7">
+            @using (Html.BeginForm("Index", "FACULTies", FormMethod.Get))
+            {
+                <input class="form-control" type="text" value="@ViewBag.SearchString" name="searchString" placeholder="What you looking for..." aria-label="Search">
+            }
+        </div>
+        <div class="col-md-5">
+            <a class="btn btn-info" href="@Url.Action("Create","FACULTies")">Create Falcuty</a>
+        </div>
+    </div>
+    <br />
+</div>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FACULTY_CODE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FACULTY_NAME)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.STATUS)
-        </th>
-        <th></th>
-    </tr>
+    <thead>
+        <tr>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().FACULTY_CODE)
+                </center>
+            </th>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().FACULTY_NAME)
+                </center>
+            </th>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().STATUS)
+                </center>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FACULTY_CODE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FACULTY_NAME)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.STATUS)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <center>
+                        @Html.DisplayFor(modelItem => item.FACULTY_CODE)
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        @Html.DisplayFor(modelItem => item.FACULTY_NAME)
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        @Html.DisplayFor(modelItem => item.STATUS)
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        <a class="btn btn-primary btn-xs" href="@Url.Action("Edit", new { id = item.ID } )">Edit</a>
+                        <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", new { id = item.ID })">Delete</a>
+                    </center>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }))

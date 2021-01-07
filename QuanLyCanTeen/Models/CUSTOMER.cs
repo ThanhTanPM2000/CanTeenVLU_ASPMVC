@@ -11,7 +11,8 @@ namespace QuanLyCanTeen.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CUSTOMER
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,12 +22,37 @@ namespace QuanLyCanTeen.Models
         }
     
         public int ID { get; set; }
+
+        [Required(ErrorMessage = "Email is required")]
+        [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress)]
         public string EMAIL { get; set; }
+
+        [Required(ErrorMessage = "Password is required")]
+        [Display(Name = "Password")]
         public string PASSWORD { get; set; }
+
+        [Required(ErrorMessage = "Full name is required")]
+        [Display(Name = "Full name")]
+        [StringLength(50, MinimumLength = 3)]
         public string FULL_NAME { get; set; }
+
+        [Required(ErrorMessage = "Phone is required")]
+        [Display(Name = "Phone")]
+        [RegularExpression(@"(84|0[3|5|7|8|9])+([0-9]{8})\b",
+                            ErrorMessage = "Please enter a valid phone address")]
         public string PHONE_NUMBER { get; set; }
+
+        [Required(ErrorMessage = "Status is required")]
+        [Display(Name = "Status")]
         public bool STATUS { get; set; }
+
+        [Required(ErrorMessage = "Customer type is required")]
+        [Display(Name = "Customer type")]
         public int CUSTOMER_TYPE { get; set; }
+
+        [Required(ErrorMessage = "Faculty code is required")]
+        [Display(Name = "Faculty code")]
         public int FACULTY_ID { get; set; }
     
         public virtual FACULTY FACULTY { get; set; }

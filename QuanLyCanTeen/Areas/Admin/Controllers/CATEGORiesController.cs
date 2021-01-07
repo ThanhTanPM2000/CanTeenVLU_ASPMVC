@@ -25,21 +25,6 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             return View(model);
         }
 
-        // GET: Admin/CATEGORies/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CATEGORY cATEGORY = db.CATEGORies.Find(id);
-            if (cATEGORY == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cATEGORY);
-        }
-
         // GET: Admin/CATEGORies/Create
         public ActionResult Create()
         {
@@ -57,10 +42,10 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             {
                 db.CATEGORies.Add(cATEGORY);
                 db.SaveChanges();
-                SetAlert("Thêm thành công", "success");
+                SetAlert("Create Category successfully", "success");
                 return RedirectToAction("Index");
             }
-            SetAlert("Thêm không thành công", "error");
+            SetAlert("Create Category was failed", "error");
             return View(cATEGORY);
         }
 
@@ -90,10 +75,10 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             {
                 db.Entry(cATEGORY).State = EntityState.Modified;
                 db.SaveChanges();
-                SetAlert("Chỉnh sửa thành công", "success");
+                SetAlert("Edit Category successfully", "success");
                 return RedirectToAction("Index");
             }
-            SetAlert("Chỉnh sửa không thành công", "error");
+            SetAlert("Edit Category was failed", "error");
             return View(cATEGORY);
         }
 
@@ -122,12 +107,12 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
                 CATEGORY cATEGORY = db.CATEGORies.Find(id);
                 db.CATEGORies.Remove(cATEGORY);
                 db.SaveChanges();
-                SetAlert("Xóa thành công", "success");
+                SetAlert("Delete Category successfully", "success");
                 return RedirectToAction("Index");
             }
             catch(Exception e)
             {
-                SetAlert("Xóa không thành công, vẫn còn món ăn có loại này", "error");
+                SetAlert("Delete Category was failed, maybe there some reference on it", "error");
                 return RedirectToAction("Delete", "CATEGORies");
             }
         }

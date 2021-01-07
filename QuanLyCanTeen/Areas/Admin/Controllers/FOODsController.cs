@@ -25,21 +25,6 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             return View(model);
         }
 
-        // GET: Admin/FOODs/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            FOOD fOOD = db.FOODs.Find(id);
-            if (fOOD == null)
-            {
-                return HttpNotFound();
-            }
-            return View(fOOD);
-        }
-
         // GET: Admin/FOODs/Create
         public ActionResult Create()
         {
@@ -58,10 +43,10 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             {
                 db.FOODs.Add(fOOD);
                 db.SaveChanges();
-                SetAlert("Thêm sản phẩm thành công", "success");
+                SetAlert("Create Food successfully", "success");
                 return RedirectToAction("Index");
             }
-            SetAlert("Thêm không thành công", "warn");
+            SetAlert("Create Food was failed", "error");
             ViewBag.CATEGORY_ID = new SelectList(db.CATEGORies, "ID", "CATEGORY_CODE", fOOD.CATEGORY_ID);
             return View(fOOD);
         }
@@ -93,10 +78,10 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             {
                 db.Entry(fOOD).State = EntityState.Modified;
                 db.SaveChanges();
-                SetAlert("Chỉnh sửa thành công", "success");
+                SetAlert("Edit Food successfully", "success");
                 return RedirectToAction("Index");
             }
-            SetAlert("Chỉnh sửa không thành công", "error");
+            SetAlert("Edit Food was failed", "error");
             ViewBag.CATEGORY_ID = new SelectList(db.CATEGORies, "ID", "CATEGORY_CODE", fOOD.CATEGORY_ID);
             return View(fOOD);
         }
@@ -126,12 +111,12 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
                 FOOD fOOD = db.FOODs.Find(id);
                 db.FOODs.Remove(fOOD);
                 db.SaveChanges();
-                SetAlert("Xóa thành công", "success");
+                SetAlert("Delete Food successfully", "success");
                 return RedirectToAction("Index");
             }
             catch(Exception e)
             {
-                SetAlert("Xóa không thành công", "error");
+                SetAlert("Delete Food was failed, maybe there some reference on it", "error");
                 return RedirectToAction("Delete", "FOODs");
                 
             }

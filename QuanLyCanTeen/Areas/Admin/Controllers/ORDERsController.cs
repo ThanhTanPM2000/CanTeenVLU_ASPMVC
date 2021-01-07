@@ -11,7 +11,7 @@ using QuanLyCanTeen.Areas.Common;
 
 namespace QuanLyCanTeen.Areas.Admin.Controllers
 {
-    public class ORDERsController : Controller
+    public class ORDERsController : CheckSessionsController
     {
         private DBEntities db = new DBEntities();
 
@@ -64,9 +64,10 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             {
                 db.ORDERs.Add(oRDER);
                 db.SaveChanges();
+                SetAlert("Create Order successfully", "success");
                 return RedirectToAction("Index");
             }
-
+            SetAlert("Create Order successfully", "success");
             ViewBag.ACCOUNT_ID = new SelectList(db.ACCOUNTs, "ID", "EMAIL", oRDER.ACCOUNT_ID);
             ViewBag.CUSTOMER_ID = new SelectList(db.CUSTOMERs, "ID", "EMAIL", oRDER.CUSTOMER_ID);
             return View(oRDER);
@@ -100,8 +101,10 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             {
                 db.Entry(oRDER).State = EntityState.Modified;
                 db.SaveChanges();
+                SetAlert("Edit Order successfully", "success");
                 return RedirectToAction("Index");
             }
+            SetAlert("Edit Order was failed", "error");
             ViewBag.ACCOUNT_ID = new SelectList(db.ACCOUNTs, "ID", "EMAIL", oRDER.ACCOUNT_ID);
             ViewBag.CUSTOMER_ID = new SelectList(db.CUSTOMERs, "ID", "EMAIL", oRDER.CUSTOMER_ID);
             return View(oRDER);
@@ -127,10 +130,19 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ORDER oRDER = db.ORDERs.Find(id);
-            db.ORDERs.Remove(oRDER);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                ORDER oRDER = db.ORDERs.Find(id);
+                db.ORDERs.Remove(oRDER);
+                db.SaveChanges();
+                SetAlert("Delete Order successfully", "success");
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                SetAlert("Delete Order was failed, maybe there some reference on it", "error");
+                return RedirectToAction("Delete", "ORDERs");
+            }
         }
 
         protected override void Dispose(bool disposing)

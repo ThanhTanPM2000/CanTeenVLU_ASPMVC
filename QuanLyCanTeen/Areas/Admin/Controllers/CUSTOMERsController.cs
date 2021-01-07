@@ -11,7 +11,7 @@ using QuanLyCanTeen.Areas.Common;
 
 namespace QuanLyCanTeen.Areas.Admin.Controllers
 {
-    public class CUSTOMERsController : Controller
+    public class CUSTOMERsController : CheckSessionsController
     {
         private DBEntities db = new DBEntities();
 
@@ -22,21 +22,6 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             var model = db.ListCus(searchString, page, pageSize);
             ViewBag.SearchString = searchString;
             return View(model);
-        }
-
-        // GET: Admin/CUSTOMERs/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CUSTOMER cUSTOMER = db.CUSTOMERs.Find(id);
-            if (cUSTOMER == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cUSTOMER);
         }
 
         // GET: Admin/CUSTOMERs/Create
@@ -57,9 +42,10 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             {
                 db.CUSTOMERs.Add(cUSTOMER);
                 db.SaveChanges();
+                SetAlert("Create Customer successfully", "success");
                 return RedirectToAction("Index");
             }
-
+            SetAlert("Create Customer failed", "error");
             ViewBag.FACULTY_ID = new SelectList(db.FACULTies, "ID", "FACULTY_CODE", cUSTOMER.FACULTY_ID);
             return View(cUSTOMER);
         }
@@ -91,8 +77,10 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             {
                 db.Entry(cUSTOMER).State = EntityState.Modified;
                 db.SaveChanges();
+                SetAlert("Edit Customer successfully", "success");
                 return RedirectToAction("Index");
             }
+            SetAlert("Edit Customer was failed", "error");
             ViewBag.FACULTY_ID = new SelectList(db.FACULTies, "ID", "FACULTY_CODE", cUSTOMER.FACULTY_ID);
             return View(cUSTOMER);
         }
@@ -117,10 +105,18 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CUSTOMER cUSTOMER = db.CUSTOMERs.Find(id);
-            db.CUSTOMERs.Remove(cUSTOMER);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                CUSTOMER cUSTOMER = db.CUSTOMERs.Find(id);
+                db.CUSTOMERs.Remove(cUSTOMER);
+                db.SaveChanges();
+                SetAlert("Delete Customer successfully", "success");
+                return RedirectToAction("Index");
+            }catch(Exception e)
+            {
+                SetAlert("Delete Customer was failed, maybe there some reference on it", "error");
+                return RedirectToAction("Delete", "CUSTOMERs");
+            }
         }
 
         protected override void Dispose(bool disposing)

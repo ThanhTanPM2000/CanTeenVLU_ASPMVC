@@ -11,7 +11,8 @@ namespace QuanLyCanTeen.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class FOOD
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,16 +20,42 @@ namespace QuanLyCanTeen.Models
         {
             this.MENUs = new HashSet<MENU>();
         }
-    
+
+        [Required(ErrorMessage = "Food code is required")]
+        [Display(Name = "Food code")]
         public int ID { get; set; }
+
+        [Display(Name = "Food code")]
+        [Required(ErrorMessage = "Food code is required")]
         public string FOOD_CODE { get; set; }
+
+        [Display(Name = "Name")]
+        [Required(ErrorMessage = "Name is required")]
+        [StringLength(50, MinimumLength = 3)]
         public string FOOD_NAME { get; set; }
+
+        [Required(ErrorMessage = "Category code is required")]
+        [Display(Name = "Category code")]
         public int CATEGORY_ID { get; set; }
+
+        [Required(ErrorMessage = "Description is required")]
+        [Display(Name = "Description")]
         public string DESCRIPTION { get; set; }
+
+        [Required(ErrorMessage = "Price is required")]
+        [Display(Name = "Price")]
+        [DataType(DataType.Currency)]
+        [Range(1000, 1000000)]
         public int PRICE { get; set; }
+
+        [Required(ErrorMessage = "Image is required")]
+        [Display(Name = "Image")]
         public string IMAGE_URL { get; set; }
+
+        [Required(ErrorMessage = "Status is required")]
+        [Display(Name = "Status")]
         public bool STATUS { get; set; }
-    
+
         public virtual CATEGORY CATEGORY { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MENU> MENUs { get; set; }

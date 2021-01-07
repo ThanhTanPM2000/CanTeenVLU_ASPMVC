@@ -57,10 +57,10 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             {
                 db.ACCOUNTs.Add(aCCOUNT);
                 db.SaveChanges();
-                SetAlert("Thêm thành công", "success");
+                SetAlert("Create Account successfully", "success");
                 return RedirectToAction("Index");
             }
-            SetAlert("Thêm không thành công", "error");
+            SetAlert("Create Account was failed", "error");
             return View(aCCOUNT);
         }
 
@@ -90,10 +90,10 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             {
                 db.Entry(aCCOUNT).State = EntityState.Modified;
                 db.SaveChanges();
-                SetAlert("Chỉnh sửa thành công", "success");
+                SetAlert("Edit Account successfully", "success");
                 return RedirectToAction("Index");
             }
-            SetAlert("Chỉnh sửa không thành công", "error");
+            SetAlert("Edit Account was failed", "error");
             return View(aCCOUNT);
         }
 
@@ -122,12 +122,12 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
                 ACCOUNT aCCOUNT = db.ACCOUNTs.Find(id);
                 db.ACCOUNTs.Remove(aCCOUNT);
                 db.SaveChanges();
-                SetAlert("Xóa thành công", "success");
+                SetAlert("Delete Account successfully", "success");
                 return RedirectToAction("Index");
             }
             catch(Exception e)
             {
-                SetAlert("Xóa không thành công", "error");
+                SetAlert("Delete Account was failed, maybe there some reference on it", "error");
                 return RedirectToAction("Delete","ACCOUNTs");
             }
 

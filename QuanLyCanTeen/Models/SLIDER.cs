@@ -11,13 +11,27 @@ namespace QuanLyCanTeen.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SLIDER
     {
+
+        [Required(ErrorMessage = "Slider code is required")]
+        [Display(Name = "Slider code")]
         public int ID { get; set; }
+
+        [Required(ErrorMessage = "Image is required")]
+        [Display(Name = "Image")]
         public string IMAGE_URL { get; set; }
+
+        [Required(ErrorMessage = "Description is required")]
+        [Display(Name = "Description")]
         public string TEXT { get; set; }
+
+        [Display(Name = "Order")]
         public Nullable<int> ORDER { get; set; }
+
+        [Display(Name = "Is visible")]
         public Nullable<bool> IS_VISIBLE { get; set; }
     }
 }

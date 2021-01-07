@@ -11,82 +11,102 @@
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-7">
-            @using (Html.BeginForm("Index", "ORDERs", FormMethod.Get))
+            @using (Html.BeginForm("Index", "CATEGORies", FormMethod.Get))
             {
-                <div class="input-group md-form form-sm form-2 pl-0">
-                    <input class="form-control" type="text" value="@ViewBag.SearchString" name="searchString" placeholder="Bạn tìm gì ..." aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="input-group-text red lighten-3">
-                            <span id="basic-text1">
-                                <i class="fas fa-search text-grey"
-                                   aria-hidden="true"></i>
-                            </span>
-                        </button>
-                    </div>
-                </div>
+                <input class="form-control" type="text" value="@ViewBag.SearchString" name="searchString" placeholder="What you looking for..." aria-label="Search">
             }
         </div>
         <div class="col-md-5">
-            <a class="btn btn-info" style="height:calc(2.25rem + 2px);" href="@Url.Action("Create","ORDERs")">Thêm Loại Món Ăn</a>
+            <a class="btn btn-info" href="@Url.Action("Create","CATEGORies")">Create Order</a>
         </div>
     </div>
     <br />
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    ORDER CODE
-                </th>
-                <th>
-                    DATE
-                </th>
-                <th>
-                    STATUS
-                </th>
-                <th>
-                    FEEDBACK
-                </th>
-                <th>
-                    ADMIN EMAIL
-                </th>
-                <th>
-                    CUSTOMER EMAIL
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ORDER_CODE)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DATE)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.STATUS)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FEEDBACK)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ACCOUNT.EMAIL)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CUSTOMER.EMAIL)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
-                        @Html.ActionLink("Print", "Print", new { id = item.ID })
-                    </td>
-                </tr>
-            }
-
-        </tbody>
-    </table>
 </div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().ORDER_CODE)
+                </center>
+            </th>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().DATE)
+                </center>
+            </th>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().STATUS)
+                </center>
+            </th>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().ACCOUNT.EMAIL)
+                </center>
+            </th>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().CUSTOMER.EMAIL)
+                </center>
+            </th>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().FEEDBACK)
+                </center>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <center>
+                        @Html.DisplayFor(modelItem => item.ORDER_CODE)
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        @Html.DisplayFor(modelItem => item.DATE)
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        @Html.DisplayFor(modelItem => item.STATUS)
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        @Html.DisplayFor(modelItem => item.FEEDBACK)
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        @Html.DisplayFor(modelItem => item.ACCOUNT.EMAIL)
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        @Html.DisplayFor(modelItem => item.CUSTOMER.EMAIL)
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        @Html.DisplayFor(modelItem => item.FEEDBACK)
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        <a class="btn btn-primary btn-xs" href="@Url.Action("Edit", new { id = item.ID } )">Edit</a>
+                        <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", new { id = item.ID })">Delete</a>
+                    </center>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }))

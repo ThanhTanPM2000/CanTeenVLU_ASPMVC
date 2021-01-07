@@ -6,33 +6,23 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using QuanLyCanTeen.Areas.Common;
 using QuanLyCanTeen.Models;
 
 namespace QuanLyCanTeen.Areas.Admin.Controllers
 {
-    public class FACULTiesController : Controller
+    public class FACULTiesController : CheckSessionsController
     {
         private DBEntities db = new DBEntities();
 
         // GET: Admin/FACULTies
-        public ActionResult Index()
+        public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
         {
-            return View(db.FACULTies.ToList());
-        }
-
-        // GET: Admin/FACULTies/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            FACULTY fACULTY = db.FACULTies.Find(id);
-            if (fACULTY == null)
-            {
-                return HttpNotFound();
-            }
-            return View(fACULTY);
+            dbCommon db = new dbCommon();
+            var model = db.ListFaculties(searchString, page, pageSize);
+            //var fOODs = db.FOODs.Include(f => f.CATEGORY);
+            ViewBag.SearchString = searchString;
+            return View(model);
         }
 
         // GET: Admin/FACULTies/Create
@@ -52,9 +42,10 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             {
                 db.FACULTies.Add(fACULTY);
                 db.SaveChanges();
+                SetAlert("Create Faculty successfully", "success");
                 return RedirectToAction("Index");
             }
-
+            SetAlert("Create Faculty was failed", "error");
             return View(fACULTY);
         }
 
@@ -84,8 +75,10 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             {
                 db.Entry(fACULTY).State = EntityState.Modified;
                 db.SaveChanges();
+                SetAlert("Edit Faculty successfully", "success");
                 return RedirectToAction("Index");
             }
+            SetAlert("Edit Faculty was failed", "error");
             return View(fACULTY);
         }
 
@@ -109,10 +102,18 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            FACULTY fACULTY = db.FACULTies.Find(id);
-            db.FACULTies.Remove(fACULTY);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                FACULTY fACULTY = db.FACULTies.Find(id);
+                db.FACULTies.Remove(fACULTY);
+                db.SaveChanges();
+                SetAlert("Delete Faculty successfully", "success");
+                return RedirectToAction("Index");
+            }catch(Exception e)
+            {
+                SetAlert("Delete Faculty was failed, maybe there some reference on it", "error");
+                return RedirectToAction("Delete", "FACULTies");
+            }
         }
 
         protected override void Dispose(bool disposing)

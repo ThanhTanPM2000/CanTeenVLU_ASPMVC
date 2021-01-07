@@ -11,7 +11,8 @@ namespace QuanLyCanTeen.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class FACULTY
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,8 +22,18 @@ namespace QuanLyCanTeen.Models
         }
     
         public int ID { get; set; }
+
+        [Required(ErrorMessage = "Faculty code is required")]
+        [Display(Name = "Faculty code")]
         public string FACULTY_CODE { get; set; }
+
+        [Required(ErrorMessage = "Faculty name is required")]
+        [Display(Name = "Faculty name")]
+        [StringLength(50, MinimumLength = 3)]
         public string FACULTY_NAME { get; set; }
+
+        [Required(ErrorMessage = "Status is required")]
+        [Display(Name = "Status")]
         public bool STATUS { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

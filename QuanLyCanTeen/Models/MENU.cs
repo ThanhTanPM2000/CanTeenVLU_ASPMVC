@@ -11,7 +11,8 @@ namespace QuanLyCanTeen.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class MENU
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,13 +20,36 @@ namespace QuanLyCanTeen.Models
         {
             this.ORDER_DETAIL = new HashSet<ORDER_DETAIL>();
         }
-    
+
+        [Required(ErrorMessage = "Menu code is required")]
+        [Display(Name = "Menu code")]
         public int ID { get; set; }
+
+        [Display(Name = "Food code")]
+        [Required(ErrorMessage = "Food code is required")]
         public int FOOD_ID { get; set; }
+
+        [Required(ErrorMessage = "Account code is required")]
+        [Display(Name = "Account code")]
         public int ACCOUNT_ID { get; set; }
+
+        [Required(ErrorMessage = "Date is required")]
+        [Display(Name = "Date")]
+        [DataType(DataType.Date)]
         public System.DateTime DATE { get; set; }
+
+        [Required(ErrorMessage = "Quantity is required")]
+        [Display(Name = "Quantity")]
+        [Range(1, Int32.MaxValue)]
         public int QUANTITY { get; set; }
+
+        [Required(ErrorMessage = "Price is required")]
+        [Display(Name = "Price")]
+        [Range(1000, Int32.MaxValue)]
         public int PRICE { get; set; }
+
+        [Required(ErrorMessage = "Status is required")]
+        [Display(Name = "Status")]
         public bool STATUS { get; set; }
     
         public virtual ACCOUNT ACCOUNT { get; set; }

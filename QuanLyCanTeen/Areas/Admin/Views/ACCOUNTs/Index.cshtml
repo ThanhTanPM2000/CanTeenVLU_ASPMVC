@@ -13,95 +13,84 @@
         <div class="col-md-7">
             @using (Html.BeginForm("Index", "ACCOUNTS", FormMethod.Get))
             {
-                <div class="input-group md-form form-sm form-2 pl-0">
-                    <input class="form-control" type="text" value="@ViewBag.SearchString" name="searchString" placeholder="Bạn tìm gì ..." aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="input-group-text red lighten-3">
-                            <span id="basic-text1">
-                                <i class="fas fa-search text-grey"
-                                   aria-hidden="true"></i>
-                            </span>
-                        </button>
-                    </div>
-                </div>
+                <input class="form-control" type="text" value="@ViewBag.SearchString" name="searchString" placeholder="What you looking for..." aria-label="Search">
             }
         </div>
         <div class="col-md-5">
-            <a class="btn btn-info" style="height:calc(2.25rem + 2px);" href="@Url.Action("Create","ACCOUNTS")">Thêm Tài Khoản</a>
+            <a class="btn btn-info" href="@Url.Action("Create","ACCOUNTS")">Create Account</a>
         </div>
     </div>
     <br />
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    <center>
-                        <span>EMAIL</span>
-                    </center>
-                </th>
-                <th>
-                    <center>
-                        <span>PASSWORD</span>
-                    </center>
-                </th>
-                <th>
-                    <center>
-                        <span>FULL_NAME</span>
-                    </center>
-                </th>
-                <th>
-                    <center>
-                        <span>STATUS</span>
-                    </center>
-                </th>
-                <th>
-                    <center>
-                        <span>ROLE</span>
-                    </center>
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-
-                    <td>
-                        <center>
-                            <a href="@Url.Action("Edit",new { id =  item.ID })" target="_blank">@item.EMAIL</a> @*add a link edit when click food name*@
-                        </center>
-                    </td>
-                    <td>
-                        <center>
-                            @item.PASSWORD
-                        </center>
-                    </td>
-                    <td>
-                        <center>
-                            @item.FULL_NAME
-                        </center>
-                    </td>
-                    <td>
-                        <center>
-                            @Html.DisplayFor(modelItem => item.STATUS)
-                        </center>
-                    </td>
-                    <td>
-                        <center>
-                            @item.ROLE
-                        </center>
-                    </td>
-                    <td>
-                        <center>
-                            <a class="btn btn-primary btn-xs" href="@Url.Action("Edit", new { id = item.ID } )">Edit</a>
-                            <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", new { id = item.ID })">Xóa</a>
-                            @*<button class="btn btn-danger btn-xs" onclick="test()" data-id="@item.IdSanPham">Hiện/Ẩn</button>*@
-                        </center>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
 </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().EMAIL)
+                </center>
+            </th>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().PASSWORD)
+                </center>
+            </th>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().FULL_NAME)
+                </center>
+            </th>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().STATUS)
+                </center>
+            </th>
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().ROLE)
+                </center>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    <center>
+                        <a href="@Url.Action("Edit",new { id =  item.ID })" target="_blank">@item.EMAIL</a> 
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        @item.PASSWORD
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        @item.FULL_NAME
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        @Html.DisplayFor(modelItem => item.STATUS)
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        @item.ROLE
+                    </center>
+                </td>
+                <td>
+                    <center>
+                        <a class="btn btn-primary btn-xs" href="@Url.Action("Edit", new { id = item.ID } )">Edit</a>
+                        <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", new { id = item.ID })">Xóa</a>
+                    </center>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }))

@@ -6,34 +6,22 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using QuanLyCanTeen.Areas.Common;
 using QuanLyCanTeen.Models;
 
 namespace QuanLyCanTeen.Areas.Admin.Controllers
 {
-    public class MENUsController : Controller
+    public class MENUsController : CheckSessionsController
     {
         private DBEntities db = new DBEntities();
 
         // GET: Admin/MENUs
-        public ActionResult Index()
+        public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
         {
-            var mENUs = db.MENUs.Include(m => m.ACCOUNT).Include(m => m.FOOD);
-            return View(mENUs.ToList());
-        }
-
-        // GET: Admin/MENUs/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MENU mENU = db.MENUs.Find(id);
-            if (mENU == null)
-            {
-                return HttpNotFound();
-            }
-            return View(mENU);
+            dbCommon db = new dbCommon();
+            var model = db.ListMenus(searchString, page, pageSize);
+            ViewBag.SearchString = searchString;
+            return View(model);
         }
 
         // GET: Admin/MENUs/Create
@@ -55,9 +43,10 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             {
                 db.MENUs.Add(mENU);
                 db.SaveChanges();
+                SetAlert("Create Menu successfully", "success");
                 return RedirectToAction("Index");
             }
-
+            SetAlert("Create Menu was failed", "error");
             ViewBag.ACCOUNT_ID = new SelectList(db.ACCOUNTs, "ID", "EMAIL", mENU.ACCOUNT_ID);
             ViewBag.FOOD_ID = new SelectList(db.FOODs, "ID", "FOOD_CODE", mENU.FOOD_ID);
             return View(mENU);
@@ -91,8 +80,10 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             {
                 db.Entry(mENU).State = EntityState.Modified;
                 db.SaveChanges();
+                SetAlert("Edit Menu successfully", "success");
                 return RedirectToAction("Index");
             }
+            SetAlert("Edit Menu was failed", "error");
             ViewBag.ACCOUNT_ID = new SelectList(db.ACCOUNTs, "ID", "EMAIL", mENU.ACCOUNT_ID);
             ViewBag.FOOD_ID = new SelectList(db.FOODs, "ID", "FOOD_CODE", mENU.FOOD_ID);
             return View(mENU);
@@ -118,10 +109,21 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MENU mENU = db.MENUs.Find(id);
-            db.MENUs.Remove(mENU);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                MENU mENU = db.MENUs.Find(id);
+                db.MENUs.Remove(mENU);
+                db.SaveChanges();
+                SetAlert("Delete Menu successfully", "success");
+                return RedirectToAction("Index");
+
+            }
+            catch(Exception e)
+            {
+                SetAlert("Delete Menu was failed, maybe there some reference on it", "error");
+                return RedirectToAction("Delete", "MENUs");
+            }
+            
         }
 
         protected override void Dispose(bool disposing)
