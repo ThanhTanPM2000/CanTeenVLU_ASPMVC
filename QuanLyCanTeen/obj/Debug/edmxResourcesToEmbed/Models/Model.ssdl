@@ -100,7 +100,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ORDER_CODE" Type="varchar" MaxLength="10" />
+    <Property Name="ORDER_CODE" Type="varchar" MaxLength="12" />
     <Property Name="DATE" Type="datetime" Nullable="false" />
     <Property Name="ACCOUNT_ID" Type="int" />
     <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />

@@ -5,65 +5,60 @@
     Layout = null;
 }
 
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login Page</title>
-    <!--Made with love by Mutiullah Samim -->
-    <!--Bootsrap 4 CDN-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-    <!--Fontawesome CDN-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-    <!--Custom styles-->
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/login.css")">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iofrm</title>
+    <link href="@Url.Content("~/Content/bootstrap.min(login).css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/fontawesome-all.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/iofrm-style.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/iofrm-theme6.css")" rel="stylesheet" />
 </head>
 <body>
-    <div class="container">
-        <div class="d-flex justify-content-center h-100">
-            <div class="card">
-                <div class="card-header">
-                    <h3>Sign In</h3>
+    <div class="form-body" class="container-fluid">
+        <div class="website-logo">
+            <a href="index.html">
+                <div class="logo">
+                    <img class="logo-size" src="@Url.Content("~/images/logo-light.svg")" alt="">
                 </div>
-                @using (Html.BeginForm("Login", "Login", FormMethod.Post))
-                {
-
-                    <div class="card-body">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" });
-                        <form>
-                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
-                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @required = true })
+            </a>
+        </div>
+        <div class="row">
+            <div class="img-holder">
+                <div class="bg"></div>
+                <div class="info-holder">
+                    <img src="@Url.Content("~/images/graphic2.svg")" alt="">
+                </div>
+            </div>
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h3>Get more things done with Loggin platform.</h3>
+                        <p>Access to the most powerfull tool in the entire design and web industry.</p>
+                        <div class="page-links">
+                            <a href="login6.html" class="active">Login</a>
+                        </div>
+                        @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                        {
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @required = true })
+                            @Html.PasswordFor(model => model.PassWord, new { @class = "form-control", @required = true })
+                            <div class="form-button">
+                                <button id="submit" type="submit" class="ibtn">Login</button>
                             </div>
-                            @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                </div>
-                                @Html.PasswordFor(model => model.PassWord, new { @class = "form-control", @required = true })
-                            </div>
-
-                            <div class="form-group">
-                                <input type="submit" value="Login" class="btn float-lg-right login_btn">
-
-                            </div>
-                        </form>
+                        }
                     </div>
-                    <div class="card-footer">
-                        <br />
-                    </div>
-                }
+                </div>
             </div>
         </div>
     </div>
-
-    <script>
-
-    </script>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min(login).js"></script>
+    <script src="~/Scripts/main.js"></script>
 </body>
 </html>
+
 

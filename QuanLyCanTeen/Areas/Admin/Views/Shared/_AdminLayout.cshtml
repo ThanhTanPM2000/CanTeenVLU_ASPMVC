@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-
+                                                                                                                                                                                 
     <div class="wrapper">
         <!-- Sidebar Holder -->
         <nav id="sidebar">
@@ -30,7 +30,7 @@
             <ul class="list-unstyled components">
                 <p>CanTeen VLU</p>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Management</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Management</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         @if (user.ROLE == 1 || user.ROLE == 2)
                         {
@@ -121,13 +121,9 @@
 
 
     <!-- jQuery CDN -->
-    <script src="~/Scripts/jquery.min.js"></script>
-
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <!-- Bootstrap Js CDN -->
-
-    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-
-
+    <script src="~/Scripts/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {

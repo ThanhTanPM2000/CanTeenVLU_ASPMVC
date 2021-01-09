@@ -114,7 +114,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ORDER_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ORDER_CODE" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
     <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ACCOUNT_ID" Type="Int32" />
     <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />

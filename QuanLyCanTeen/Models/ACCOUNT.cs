@@ -11,8 +11,7 @@ namespace QuanLyCanTeen.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class ACCOUNT
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,31 +21,12 @@ namespace QuanLyCanTeen.Models
             this.ORDERs = new HashSet<ORDER>();
             this.NOTIFICATIONs = new HashSet<NOTIFICATION>();
         }
-
-        [Required(ErrorMessage = "Account code is required")]
-        [Display(Name = "Account code")]
+    
         public int ID { get; set; }
-
-        [Required(ErrorMessage = "Email is required")]
-        [Display(Name = "Email")]
-        [DataType(DataType.EmailAddress)]
         public string EMAIL { get; set; }
-
-        [Required(ErrorMessage = "Password is required")]
-        [Display(Name = "Password")]
         public string PASSWORD { get; set; }
-
-        [Required(ErrorMessage = "Full name is required")]
-        [Display(Name = "Full name")]
-        [StringLength(50, MinimumLength = 3)]
         public string FULL_NAME { get; set; }
-
-        [Required(ErrorMessage = "Status is required")]
-        [Display(Name = "Status")]
         public bool STATUS { get; set; }
-
-        [Required(ErrorMessage = "Role code is required")]
-        [Display(Name = "Role code")]
         public int ROLE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
