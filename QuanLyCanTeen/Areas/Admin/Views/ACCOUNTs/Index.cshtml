@@ -27,6 +27,11 @@
         <tr>
             <th>
                 <center>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().ID)
+                </center>
+            </th>
+            <th>
+                <center>
                     @Html.DisplayNameFor(model => model.FirstOrDefault().EMAIL)
                 </center>
             </th>
@@ -56,40 +61,44 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-
-                <td>
-                    <center>
-                        <a href="@Url.Action("Edit",new { id =  item.ID })" target="_blank">@item.EMAIL</a> 
-                    </center>
-                </td>
-                <td>
-                    <center>
-                        @item.PASSWORD
-                    </center>
-                </td>
-                <td>
-                    <center>
-                        @item.FULL_NAME
-                    </center>
-                </td>
-                <td>
-                    <center>
-                        @Html.DisplayFor(modelItem => item.STATUS)
-                    </center>
-                </td>
-                <td>
-                    <center>
-                        @item.ROLE
-                    </center>
-                </td>
-                <td>
-                    <center>
-                        <a class="btn btn-primary btn-xs" href="@Url.Action("Edit", new { id = item.ID } )">Edit</a>
-                        <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", new { id = item.ID })">Xóa</a>
-                    </center>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                <center>
+                    @item.ID
+                </center>
+            </td>
+            <td>
+                <center>
+                    <a href="@Url.Action("Edit",new { id =  item.ID })" target="_blank">@item.EMAIL</a>
+                </center>
+            </td>
+            <td>
+                <center>
+                    @item.PASSWORD
+                </center>
+            </td>
+            <td>
+                <center>
+                    @item.FULL_NAME
+                </center>
+            </td>
+            <td>
+                <center>
+                    @Html.DisplayFor(modelItem => item.STATUS)
+                </center>
+            </td>
+            <td>
+                <center>
+                    @item.ROLE
+                </center>
+            </td>
+            <td>
+                <center>
+                    <a class="btn btn-primary btn-xs" href="@Url.Action("Edit", new { id = item.ID } )">Edit</a>
+                    <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", new { id = item.ID })">Xóa</a>
+                </center>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

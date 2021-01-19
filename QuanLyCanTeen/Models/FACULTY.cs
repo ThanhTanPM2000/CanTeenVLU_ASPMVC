@@ -11,21 +11,31 @@ namespace QuanLyCanTeen.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class FACULTY
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public FACULTY()
         {
-            this.CUSTOMERs = new HashSet<CUSTOMER>();
+            this.AspNetUsers = new HashSet<AspNetUser>();
         }
     
         public int ID { get; set; }
+        [Required(ErrorMessage = "Faculty code is required")]
+        [Display(Name = "Faculty code")]
         public string FACULTY_CODE { get; set; }
+
+        [Required(ErrorMessage = "Faculty name is required")]
+        [Display(Name = "Faculty name")]
+        [StringLength(50, MinimumLength = 3)]
         public string FACULTY_NAME { get; set; }
+
+        [Required(ErrorMessage = "Status is required")]
+        [Display(Name = "Status")]
         public bool STATUS { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CUSTOMER> CUSTOMERs { get; set; }
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

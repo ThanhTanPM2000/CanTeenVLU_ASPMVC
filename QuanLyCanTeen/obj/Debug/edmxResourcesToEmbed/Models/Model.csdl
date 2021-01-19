@@ -1,18 +1,143 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="QUANLYCANTEEN_VLUModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ACCOUNTs" EntityType="QUANLYCANTEEN_VLUModel.ACCOUNT" />
+    <EntitySet Name="AspNetRoles" EntityType="QUANLYCANTEEN_VLUModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="QUANLYCANTEEN_VLUModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="QUANLYCANTEEN_VLUModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="QUANLYCANTEEN_VLUModel.AspNetUser" />
+    <EntitySet Name="CATEGORies" EntityType="QUANLYCANTEEN_VLUModel.CATEGORY" />
+    <EntitySet Name="CONTACTs" EntityType="QUANLYCANTEEN_VLUModel.CONTACT" />
+    <EntitySet Name="CUSTOMERs" EntityType="QUANLYCANTEEN_VLUModel.CUSTOMER" />
+    <EntitySet Name="FACULTies" EntityType="QUANLYCANTEEN_VLUModel.FACULTY" />
+    <EntitySet Name="FOODs" EntityType="QUANLYCANTEEN_VLUModel.FOOD" />
+    <EntitySet Name="INTRODUCTIONs" EntityType="QUANLYCANTEEN_VLUModel.INTRODUCTION" />
+    <EntitySet Name="MENUs" EntityType="QUANLYCANTEEN_VLUModel.MENU" />
+    <EntitySet Name="NOTIFICATIONs" EntityType="QUANLYCANTEEN_VLUModel.NOTIFICATION" />
+    <EntitySet Name="ORDERs" EntityType="QUANLYCANTEEN_VLUModel.ORDER" />
+    <EntitySet Name="ORDER_DETAIL" EntityType="QUANLYCANTEEN_VLUModel.ORDER_DETAIL" />
+    <EntitySet Name="SLIDERs" EntityType="QUANLYCANTEEN_VLUModel.SLIDER" />
+    <AssociationSet Name="FK__MENU__ACCOUNT_ID__173876EA" Association="QUANLYCANTEEN_VLUModel.FK__MENU__ACCOUNT_ID__173876EA">
+      <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
+      <End Role="MENU" EntitySet="MENUs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ORDERS__CUST_ID__1BFD2C07" Association="QUANLYCANTEEN_VLUModel.FK__ORDERS__CUST_ID__1BFD2C07">
+      <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
+      <End Role="ORDER" EntitySet="ORDERs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NOTIFICATION_ACCOUNT" Association="QUANLYCANTEEN_VLUModel.FK_NOTIFICATION_ACCOUNT">
+      <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
+      <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="QUANLYCANTEEN_VLUModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="QUANLYCANTEEN_VLUModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AspNetUsers_FACULTY" Association="QUANLYCANTEEN_VLUModel.FK_AspNetUsers_FACULTY">
+      <End Role="FACULTY" EntitySet="FACULTies" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDER_AspNetUsers" Association="QUANLYCANTEEN_VLUModel.FK_ORDER_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="ORDER" EntitySet="ORDERs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FOOD__MENU_ID__117F9D94" Association="QUANLYCANTEEN_VLUModel.FK__FOOD__MENU_ID__117F9D94">
+      <End Role="CATEGORY" EntitySet="CATEGORies" />
+      <End Role="FOOD" EntitySet="FOODs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MENU__FOOD_ID__164452B1" Association="QUANLYCANTEEN_VLUModel.FK__MENU__FOOD_ID__164452B1">
+      <End Role="FOOD" EntitySet="FOODs" />
+      <End Role="MENU" EntitySet="MENUs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DETAILORD__MENU___22AA2996" Association="QUANLYCANTEEN_VLUModel.FK__DETAILORD__MENU___22AA2996">
+      <End Role="MENU" EntitySet="MENUs" />
+      <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NOTIFICAT__CONTE__276EDEB3" Association="QUANLYCANTEEN_VLUModel.FK__NOTIFICAT__CONTE__276EDEB3">
+      <End Role="ORDER" EntitySet="ORDERs" />
+      <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DETAILORD__PRICE__21B6055D" Association="QUANLYCANTEEN_VLUModel.FK__DETAILORD__PRICE__21B6055D">
+      <End Role="ORDER" EntitySet="ORDERs" />
+      <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="QUANLYCANTEEN_VLUModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="ACCOUNT">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="FULL_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FULL_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="STATUS" Type="Boolean" Nullable="false" />
     <Property Name="ROLE" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="MENUs" Relationship="Self.FK__MENU__ACCOUNT_ID__173876EA" FromRole="ACCOUNT" ToRole="MENU" />
-    <NavigationProperty Name="ORDERs" Relationship="Self.FK__ORDERS__CUST_ID__1BFD2C07" FromRole="ACCOUNT" ToRole="ORDER" />
-    <NavigationProperty Name="NOTIFICATIONs" Relationship="Self.FK_NOTIFICATION_ACCOUNT" FromRole="ACCOUNT" ToRole="NOTIFICATION" />
+    <NavigationProperty Name="MENUs" Relationship="QUANLYCANTEEN_VLUModel.FK__MENU__ACCOUNT_ID__173876EA" FromRole="ACCOUNT" ToRole="MENU" />
+    <NavigationProperty Name="ORDERs" Relationship="QUANLYCANTEEN_VLUModel.FK__ORDERS__CUST_ID__1BFD2C07" FromRole="ACCOUNT" ToRole="ORDER" />
+    <NavigationProperty Name="NOTIFICATIONs" Relationship="QUANLYCANTEEN_VLUModel.FK_NOTIFICATION_ACCOUNT" FromRole="ACCOUNT" ToRole="NOTIFICATION" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="QUANLYCANTEEN_VLUModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="QUANLYCANTEEN_VLUModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="QUANLYCANTEEN_VLUModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" DefaultValue="False" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="FULL_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="STATUS" Type="Boolean" Nullable="false" />
+    <Property Name="CUSTOMER_TYPE" Type="Int32" Nullable="false" />
+    <Property Name="FACULTY_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="QUANLYCANTEEN_VLUModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="QUANLYCANTEEN_VLUModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="FACULTY" Relationship="QUANLYCANTEEN_VLUModel.FK_AspNetUsers_FACULTY" FromRole="AspNetUser" ToRole="FACULTY" />
+    <NavigationProperty Name="ORDERs" Relationship="QUANLYCANTEEN_VLUModel.FK_ORDER_AspNetUsers" FromRole="AspNetUser" ToRole="ORDER" />
+    <NavigationProperty Name="AspNetRoles" Relationship="QUANLYCANTEEN_VLUModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
   </EntityType>
   <EntityType Name="CATEGORY">
     <Key>
@@ -20,35 +145,33 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CATEGORY_CODE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-    <Property Name="CATEGORY_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CATEGORY_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="IMAGE_URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="STATUS" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="FOODs" Relationship="Self.FK__FOOD__MENU_ID__117F9D94" FromRole="CATEGORY" ToRole="FOOD" />
+    <NavigationProperty Name="FOODs" Relationship="QUANLYCANTEEN_VLUModel.FK__FOOD__MENU_ID__117F9D94" FromRole="CATEGORY" ToRole="FOOD" />
   </EntityType>
   <EntityType Name="CONTACT">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="TITLE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TITLE" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CONTENT" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="CUSTOMER">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="FULL_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FULL_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PHONE_NUMBER" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="STATUS" Type="Boolean" Nullable="false" />
     <Property Name="CUSTOMER_TYPE" Type="Int32" Nullable="false" />
     <Property Name="FACULTY_ID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="FACULTY" Relationship="Self.FK__CUSTOMERS__FACUL__0519C6AF" FromRole="CUSTOMER" ToRole="FACULTY" />
-    <NavigationProperty Name="ORDERs" Relationship="Self.FK__ORDERS__CUST_ID__1CF15040" FromRole="CUSTOMER" ToRole="ORDER" />
   </EntityType>
   <EntityType Name="FACULTY">
     <Key>
@@ -56,9 +179,9 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="FACULTY_CODE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-    <Property Name="FACULTY_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FACULTY_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="STATUS" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="CUSTOMERs" Relationship="Self.FK__CUSTOMERS__FACUL__0519C6AF" FromRole="FACULTY" ToRole="CUSTOMER" />
+    <NavigationProperty Name="AspNetUsers" Relationship="QUANLYCANTEEN_VLUModel.FK_AspNetUsers_FACULTY" FromRole="FACULTY" ToRole="AspNetUser" />
   </EntityType>
   <EntityType Name="FOOD">
     <Key>
@@ -66,21 +189,21 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="FOOD_CODE" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-    <Property Name="FOOD_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FOOD_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CATEGORY_ID" Type="Int32" Nullable="false" />
     <Property Name="DESCRIPTION" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="PRICE" Type="Int32" Nullable="false" />
     <Property Name="IMAGE_URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="STATUS" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="CATEGORY" Relationship="Self.FK__FOOD__MENU_ID__117F9D94" FromRole="FOOD" ToRole="CATEGORY" />
-    <NavigationProperty Name="MENUs" Relationship="Self.FK__MENU__FOOD_ID__164452B1" FromRole="FOOD" ToRole="MENU" />
+    <NavigationProperty Name="CATEGORY" Relationship="QUANLYCANTEEN_VLUModel.FK__FOOD__MENU_ID__117F9D94" FromRole="FOOD" ToRole="CATEGORY" />
+    <NavigationProperty Name="MENUs" Relationship="QUANLYCANTEEN_VLUModel.FK__MENU__FOOD_ID__164452B1" FromRole="FOOD" ToRole="MENU" />
   </EntityType>
   <EntityType Name="INTRODUCTION">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CONTENT" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="MENU">
     <Key>
@@ -93,9 +216,9 @@
     <Property Name="QUANTITY" Type="Int32" Nullable="false" />
     <Property Name="PRICE" Type="Int32" Nullable="false" />
     <Property Name="STATUS" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="ACCOUNT" Relationship="Self.FK__MENU__ACCOUNT_ID__173876EA" FromRole="MENU" ToRole="ACCOUNT" />
-    <NavigationProperty Name="FOOD" Relationship="Self.FK__MENU__FOOD_ID__164452B1" FromRole="MENU" ToRole="FOOD" />
-    <NavigationProperty Name="ORDER_DETAIL" Relationship="Self.FK__DETAILORD__MENU___22AA2996" FromRole="MENU" ToRole="ORDER_DETAIL" />
+    <NavigationProperty Name="ACCOUNT" Relationship="QUANLYCANTEEN_VLUModel.FK__MENU__ACCOUNT_ID__173876EA" FromRole="MENU" ToRole="ACCOUNT" />
+    <NavigationProperty Name="FOOD" Relationship="QUANLYCANTEEN_VLUModel.FK__MENU__FOOD_ID__164452B1" FromRole="MENU" ToRole="FOOD" />
+    <NavigationProperty Name="ORDER_DETAIL" Relationship="QUANLYCANTEEN_VLUModel.FK__DETAILORD__MENU___22AA2996" FromRole="MENU" ToRole="ORDER_DETAIL" />
   </EntityType>
   <EntityType Name="NOTIFICATION">
     <Key>
@@ -106,24 +229,24 @@
     <Property Name="ORDER_ID" Type="Int32" />
     <Property Name="DATE" Type="DateTime" Precision="3" />
     <Property Name="CONTENT" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="ACCOUNT" Relationship="Self.FK_NOTIFICATION_ACCOUNT" FromRole="NOTIFICATION" ToRole="ACCOUNT" />
-    <NavigationProperty Name="ORDER" Relationship="Self.FK__NOTIFICAT__CONTE__276EDEB3" FromRole="NOTIFICATION" ToRole="ORDER" />
+    <NavigationProperty Name="ACCOUNT" Relationship="QUANLYCANTEEN_VLUModel.FK_NOTIFICATION_ACCOUNT" FromRole="NOTIFICATION" ToRole="ACCOUNT" />
+    <NavigationProperty Name="ORDER" Relationship="QUANLYCANTEEN_VLUModel.FK__NOTIFICAT__CONTE__276EDEB3" FromRole="NOTIFICATION" ToRole="ORDER" />
   </EntityType>
   <EntityType Name="ORDER">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ORDER_CODE" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="ORDER_CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ACCOUNT_ID" Type="Int32" />
-    <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
+    <Property Name="CUSTOMER_ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="STATUS" Type="Int32" Nullable="false" />
     <Property Name="FEEDBACK" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="ACCOUNT" Relationship="Self.FK__ORDERS__CUST_ID__1BFD2C07" FromRole="ORDER" ToRole="ACCOUNT" />
-    <NavigationProperty Name="CUSTOMER" Relationship="Self.FK__ORDERS__CUST_ID__1CF15040" FromRole="ORDER" ToRole="CUSTOMER" />
-    <NavigationProperty Name="NOTIFICATIONs" Relationship="Self.FK__NOTIFICAT__CONTE__276EDEB3" FromRole="ORDER" ToRole="NOTIFICATION" />
-    <NavigationProperty Name="ORDER_DETAIL" Relationship="Self.FK__DETAILORD__PRICE__21B6055D" FromRole="ORDER" ToRole="ORDER_DETAIL" />
+    <NavigationProperty Name="ACCOUNT" Relationship="QUANLYCANTEEN_VLUModel.FK__ORDERS__CUST_ID__1BFD2C07" FromRole="ORDER" ToRole="ACCOUNT" />
+    <NavigationProperty Name="AspNetUser" Relationship="QUANLYCANTEEN_VLUModel.FK_ORDER_AspNetUsers" FromRole="ORDER" ToRole="AspNetUser" />
+    <NavigationProperty Name="NOTIFICATIONs" Relationship="QUANLYCANTEEN_VLUModel.FK__NOTIFICAT__CONTE__276EDEB3" FromRole="ORDER" ToRole="NOTIFICATION" />
+    <NavigationProperty Name="ORDER_DETAIL" Relationship="QUANLYCANTEEN_VLUModel.FK__DETAILORD__PRICE__21B6055D" FromRole="ORDER" ToRole="ORDER_DETAIL" />
   </EntityType>
   <EntityType Name="ORDER_DETAIL">
     <Key>
@@ -134,22 +257,22 @@
     <Property Name="MENU_ID" Type="Int32" Nullable="false" />
     <Property Name="QUANTITY" Type="Int32" Nullable="false" />
     <Property Name="PRICE" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="MENU" Relationship="Self.FK__DETAILORD__MENU___22AA2996" FromRole="ORDER_DETAIL" ToRole="MENU" />
-    <NavigationProperty Name="ORDER" Relationship="Self.FK__DETAILORD__PRICE__21B6055D" FromRole="ORDER_DETAIL" ToRole="ORDER" />
+    <NavigationProperty Name="MENU" Relationship="QUANLYCANTEEN_VLUModel.FK__DETAILORD__MENU___22AA2996" FromRole="ORDER_DETAIL" ToRole="MENU" />
+    <NavigationProperty Name="ORDER" Relationship="QUANLYCANTEEN_VLUModel.FK__DETAILORD__PRICE__21B6055D" FromRole="ORDER_DETAIL" ToRole="ORDER" />
   </EntityType>
   <EntityType Name="SLIDER">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IMAGE_URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IMAGE_URL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="TEXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ORDER" Type="Int32" />
     <Property Name="IS_VISIBLE" Type="Boolean" />
   </EntityType>
   <Association Name="FK__MENU__ACCOUNT_ID__173876EA">
-    <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="1" />
-    <End Role="MENU" Type="Self.MENU" Multiplicity="*" />
+    <End Type="QUANLYCANTEEN_VLUModel.ACCOUNT" Role="ACCOUNT" Multiplicity="1" />
+    <End Type="QUANLYCANTEEN_VLUModel.MENU" Role="MENU" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ACCOUNT">
         <PropertyRef Name="ID" />
@@ -160,8 +283,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__ORDERS__CUST_ID__1BFD2C07">
-    <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="0..1" />
-    <End Role="ORDER" Type="Self.ORDER" Multiplicity="*" />
+    <End Type="QUANLYCANTEEN_VLUModel.ACCOUNT" Role="ACCOUNT" Multiplicity="0..1" />
+    <End Type="QUANLYCANTEEN_VLUModel.ORDER" Role="ORDER" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ACCOUNT">
         <PropertyRef Name="ID" />
@@ -172,8 +295,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_NOTIFICATION_ACCOUNT">
-    <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="0..1" />
-    <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+    <End Type="QUANLYCANTEEN_VLUModel.ACCOUNT" Role="ACCOUNT" Multiplicity="0..1" />
+    <End Type="QUANLYCANTEEN_VLUModel.NOTIFICATION" Role="NOTIFICATION" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ACCOUNT">
         <PropertyRef Name="ID" />
@@ -183,9 +306,61 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="QUANLYCANTEEN_VLUModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="QUANLYCANTEEN_VLUModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="QUANLYCANTEEN_VLUModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="QUANLYCANTEEN_VLUModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AspNetUsers_FACULTY">
+    <End Type="QUANLYCANTEEN_VLUModel.FACULTY" Role="FACULTY" Multiplicity="1" />
+    <End Type="QUANLYCANTEEN_VLUModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FACULTY">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AspNetUser">
+        <PropertyRef Name="FACULTY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDER_AspNetUsers">
+    <End Type="QUANLYCANTEEN_VLUModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="QUANLYCANTEEN_VLUModel.ORDER" Role="ORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ORDER">
+        <PropertyRef Name="CUSTOMER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__FOOD__MENU_ID__117F9D94">
-    <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="1" />
-    <End Role="FOOD" Type="Self.FOOD" Multiplicity="*" />
+    <End Type="QUANLYCANTEEN_VLUModel.CATEGORY" Role="CATEGORY" Multiplicity="1" />
+    <End Type="QUANLYCANTEEN_VLUModel.FOOD" Role="FOOD" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="CATEGORY">
         <PropertyRef Name="ID" />
@@ -195,33 +370,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__CUSTOMERS__FACUL__0519C6AF">
-    <End Role="FACULTY" Type="Self.FACULTY" Multiplicity="1" />
-    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FACULTY">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="CUSTOMER">
-        <PropertyRef Name="FACULTY_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__ORDERS__CUST_ID__1CF15040">
-    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
-    <End Role="ORDER" Type="Self.ORDER" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CUSTOMER">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="ORDER">
-        <PropertyRef Name="CUSTOMER_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__MENU__FOOD_ID__164452B1">
-    <End Role="FOOD" Type="Self.FOOD" Multiplicity="1" />
-    <End Role="MENU" Type="Self.MENU" Multiplicity="*" />
+    <End Type="QUANLYCANTEEN_VLUModel.FOOD" Role="FOOD" Multiplicity="1" />
+    <End Type="QUANLYCANTEEN_VLUModel.MENU" Role="MENU" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="FOOD">
         <PropertyRef Name="ID" />
@@ -232,8 +383,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__DETAILORD__MENU___22AA2996">
-    <End Role="MENU" Type="Self.MENU" Multiplicity="1" />
-    <End Role="ORDER_DETAIL" Type="Self.ORDER_DETAIL" Multiplicity="*" />
+    <End Type="QUANLYCANTEEN_VLUModel.MENU" Role="MENU" Multiplicity="1" />
+    <End Type="QUANLYCANTEEN_VLUModel.ORDER_DETAIL" Role="ORDER_DETAIL" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MENU">
         <PropertyRef Name="ID" />
@@ -244,8 +395,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__NOTIFICAT__CONTE__276EDEB3">
-    <End Role="ORDER" Type="Self.ORDER" Multiplicity="0..1" />
-    <End Role="NOTIFICATION" Type="Self.NOTIFICATION" Multiplicity="*" />
+    <End Type="QUANLYCANTEEN_VLUModel.ORDER" Role="ORDER" Multiplicity="0..1" />
+    <End Type="QUANLYCANTEEN_VLUModel.NOTIFICATION" Role="NOTIFICATION" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ORDER">
         <PropertyRef Name="ID" />
@@ -256,8 +407,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__DETAILORD__PRICE__21B6055D">
-    <End Role="ORDER" Type="Self.ORDER" Multiplicity="1" />
-    <End Role="ORDER_DETAIL" Type="Self.ORDER_DETAIL" Multiplicity="*" />
+    <End Type="QUANLYCANTEEN_VLUModel.ORDER" Role="ORDER" Multiplicity="1" />
+    <End Type="QUANLYCANTEEN_VLUModel.ORDER_DETAIL" Role="ORDER_DETAIL" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ORDER">
         <PropertyRef Name="ID" />
@@ -267,58 +418,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="ACCOUNTs" EntityType="Self.ACCOUNT" />
-    <EntitySet Name="CATEGORies" EntityType="Self.CATEGORY" />
-    <EntitySet Name="CONTACTs" EntityType="Self.CONTACT" />
-    <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
-    <EntitySet Name="FACULTies" EntityType="Self.FACULTY" />
-    <EntitySet Name="FOODs" EntityType="Self.FOOD" />
-    <EntitySet Name="INTRODUCTIONs" EntityType="Self.INTRODUCTION" />
-    <EntitySet Name="MENUs" EntityType="Self.MENU" />
-    <EntitySet Name="NOTIFICATIONs" EntityType="Self.NOTIFICATION" />
-    <EntitySet Name="ORDERs" EntityType="Self.ORDER" />
-    <EntitySet Name="ORDER_DETAIL" EntityType="Self.ORDER_DETAIL" />
-    <EntitySet Name="SLIDERs" EntityType="Self.SLIDER" />
-    <AssociationSet Name="FK__MENU__ACCOUNT_ID__173876EA" Association="Self.FK__MENU__ACCOUNT_ID__173876EA">
-      <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
-      <End Role="MENU" EntitySet="MENUs" />
-    </AssociationSet>
-    <AssociationSet Name="FK__ORDERS__CUST_ID__1BFD2C07" Association="Self.FK__ORDERS__CUST_ID__1BFD2C07">
-      <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
-      <End Role="ORDER" EntitySet="ORDERs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_NOTIFICATION_ACCOUNT" Association="Self.FK_NOTIFICATION_ACCOUNT">
-      <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
-      <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
-    </AssociationSet>
-    <AssociationSet Name="FK__FOOD__MENU_ID__117F9D94" Association="Self.FK__FOOD__MENU_ID__117F9D94">
-      <End Role="CATEGORY" EntitySet="CATEGORies" />
-      <End Role="FOOD" EntitySet="FOODs" />
-    </AssociationSet>
-    <AssociationSet Name="FK__CUSTOMERS__FACUL__0519C6AF" Association="Self.FK__CUSTOMERS__FACUL__0519C6AF">
-      <End Role="FACULTY" EntitySet="FACULTies" />
-      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
-    </AssociationSet>
-    <AssociationSet Name="FK__ORDERS__CUST_ID__1CF15040" Association="Self.FK__ORDERS__CUST_ID__1CF15040">
-      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
-      <End Role="ORDER" EntitySet="ORDERs" />
-    </AssociationSet>
-    <AssociationSet Name="FK__MENU__FOOD_ID__164452B1" Association="Self.FK__MENU__FOOD_ID__164452B1">
-      <End Role="FOOD" EntitySet="FOODs" />
-      <End Role="MENU" EntitySet="MENUs" />
-    </AssociationSet>
-    <AssociationSet Name="FK__DETAILORD__MENU___22AA2996" Association="Self.FK__DETAILORD__MENU___22AA2996">
-      <End Role="MENU" EntitySet="MENUs" />
-      <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
-    </AssociationSet>
-    <AssociationSet Name="FK__NOTIFICAT__CONTE__276EDEB3" Association="Self.FK__NOTIFICAT__CONTE__276EDEB3">
-      <End Role="ORDER" EntitySet="ORDERs" />
-      <End Role="NOTIFICATION" EntitySet="NOTIFICATIONs" />
-    </AssociationSet>
-    <AssociationSet Name="FK__DETAILORD__PRICE__21B6055D" Association="Self.FK__DETAILORD__PRICE__21B6055D">
-      <End Role="ORDER" EntitySet="ORDERs" />
-      <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
-    </AssociationSet>
-  </EntityContainer>
+  <Association Name="AspNetUserRoles">
+    <End Type="QUANLYCANTEEN_VLUModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="QUANLYCANTEEN_VLUModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
 </Schema>

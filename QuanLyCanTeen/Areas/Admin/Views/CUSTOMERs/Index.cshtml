@@ -1,5 +1,5 @@
 ﻿@*model IEnumerable<QuanLyCanTeen.Models.CUSTOMER>*@
-@model PagedList.IPagedList<QuanLyCanTeen.Models.CUSTOMER>
+@model PagedList.IPagedList<QuanLyCanTeen.Models.AspNetUser>
 @using PagedList;
 @using PagedList.Mvc;
 @{
@@ -27,22 +27,27 @@
         <tr>
             <th>
                 <center>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().EMAIL)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Id)
                 </center>
             </th>
             <th>
                 <center>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().PASSWORD)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Email)
+                </center>
+            </th>
+            @*<th>
+            <center>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().PasswordHash)
+            </center>
+        </th>*@
+            <th>
+                <center>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().UserName)
                 </center>
             </th>
             <th>
                 <center>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().FULL_NAME)
-                </center>
-            </th>
-            <th>
-                <center>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().PHONE_NUMBER)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().PhoneNumber)
                 </center>
             </th>
             <th>
@@ -66,49 +71,54 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    <center>
-                        @Html.DisplayFor(modelItem => item.EMAIL)
-                    </center>
-                </td>
-                <td>
-                    <center>
-                        @Html.DisplayFor(modelItem => item.PASSWORD)
-                    </center>
-                </td>
-                <td>
-                    <center>
-                        @Html.DisplayFor(modelItem => item.FULL_NAME)
-                    </center>
-                </td>
-                <td>
-                    <center>
-                        @Html.DisplayFor(modelItem => item.PHONE_NUMBER)
-                    </center>
-                </td>
-                <td>
-                    <center>
-                        @Html.DisplayFor(modelItem => item.STATUS)
-                    </center>
-                </td>
-                <td>
-                    <center>
-                        @Html.DisplayFor(modelItem => item.CUSTOMER_TYPE)
-                    </center>
-                </td>
-                <td>
-                    <center>
-                        @Html.DisplayFor(modelItem => item.FACULTY.FACULTY_CODE)
-                    </center>
-                </td>
-                <td>
-                    <center>
-                        <a class="btn btn-primary btn-xs" href="@Url.Action("Edit", new { id = item.ID } )">Edit</a>
-                        <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", new { id = item.ID })">Delete</a>
-                    </center>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                <center>
+                    @item.Id
+                </center>
+            </td>
+            <td>
+                <center>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </center>
+            </td>
+            @*<td>
+            <center>
+                @Html.DisplayFor(modelItem => item.PasswordHash)
+            </center>
+        </td>*@
+            <td>
+                <center>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </center>
+            </td>
+            <td>
+                <center>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </center>
+            </td>
+            <td>
+                <center>
+                    @Html.DisplayFor(modelItem => item.STATUS)
+                </center>
+            </td>
+            <td>
+                <center>
+                    @Html.DisplayFor(modelItem => item.CUSTOMER_TYPE)
+                </center>
+            </td>
+            <td>
+                <center>
+                    @Html.DisplayFor(modelItem => item.FACULTY.FACULTY_CODE)
+                </center>
+            </td>
+            <td>
+                <center>
+                    <a class="btn btn-primary btn-xs" href="@Url.Action("Edit", new { id = item.Id } )">Edit</a>
+                    <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", new { id = item.Id })">Delete</a>
+                </center>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

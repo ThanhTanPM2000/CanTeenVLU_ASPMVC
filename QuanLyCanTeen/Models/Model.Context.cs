@@ -26,6 +26,10 @@ namespace QuanLyCanTeen.Models
         }
     
         public virtual DbSet<ACCOUNT> ACCOUNTs { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<CATEGORY> CATEGORies { get; set; }
         public virtual DbSet<CONTACT> CONTACTs { get; set; }
         public virtual DbSet<CUSTOMER> CUSTOMERs { get; set; }

@@ -4,141 +4,198 @@
     <EntitySetMapping Name="ACCOUNTs">
       <EntityTypeMapping TypeName="QUANLYCANTEEN_VLUModel.ACCOUNT">
         <MappingFragment StoreEntitySet="ACCOUNT">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
-          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
-          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
           <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="QUANLYCANTEEN_VLUModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="QUANLYCANTEEN_VLUModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="QUANLYCANTEEN_VLUModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="QUANLYCANTEEN_VLUModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="FACULTY_ID" ColumnName="FACULTY_ID" />
+          <ScalarProperty Name="CUSTOMER_TYPE" ColumnName="CUSTOMER_TYPE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CATEGORies">
       <EntityTypeMapping TypeName="QUANLYCANTEEN_VLUModel.CATEGORY">
         <MappingFragment StoreEntitySet="CATEGORY">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="CATEGORY_CODE" ColumnName="CATEGORY_CODE" />
-          <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
-          <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
           <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
+          <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+          <ScalarProperty Name="CATEGORY_CODE" ColumnName="CATEGORY_CODE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CONTACTs">
       <EntityTypeMapping TypeName="QUANLYCANTEEN_VLUModel.CONTACT">
         <MappingFragment StoreEntitySet="CONTACT">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
-          <ScalarProperty Name="DATE" ColumnName="DATE" />
           <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CUSTOMERs">
       <EntityTypeMapping TypeName="QUANLYCANTEEN_VLUModel.CUSTOMER">
         <MappingFragment StoreEntitySet="CUSTOMER">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
-          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
-          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
-          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
-          <ScalarProperty Name="CUSTOMER_TYPE" ColumnName="CUSTOMER_TYPE" />
           <ScalarProperty Name="FACULTY_ID" ColumnName="FACULTY_ID" />
+          <ScalarProperty Name="CUSTOMER_TYPE" ColumnName="CUSTOMER_TYPE" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FACULTies">
       <EntityTypeMapping TypeName="QUANLYCANTEEN_VLUModel.FACULTY">
         <MappingFragment StoreEntitySet="FACULTY">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="FACULTY_CODE" ColumnName="FACULTY_CODE" />
-          <ScalarProperty Name="FACULTY_NAME" ColumnName="FACULTY_NAME" />
           <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="FACULTY_NAME" ColumnName="FACULTY_NAME" />
+          <ScalarProperty Name="FACULTY_CODE" ColumnName="FACULTY_CODE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FOODs">
       <EntityTypeMapping TypeName="QUANLYCANTEEN_VLUModel.FOOD">
         <MappingFragment StoreEntitySet="FOOD">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="FOOD_CODE" ColumnName="FOOD_CODE" />
-          <ScalarProperty Name="FOOD_NAME" ColumnName="FOOD_NAME" />
-          <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
-          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
-          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
-          <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
           <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+          <ScalarProperty Name="FOOD_NAME" ColumnName="FOOD_NAME" />
+          <ScalarProperty Name="FOOD_CODE" ColumnName="FOOD_CODE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="INTRODUCTIONs">
       <EntityTypeMapping TypeName="QUANLYCANTEEN_VLUModel.INTRODUCTION">
         <MappingFragment StoreEntitySet="INTRODUCTION">
-          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="MENUs">
       <EntityTypeMapping TypeName="QUANLYCANTEEN_VLUModel.MENU">
         <MappingFragment StoreEntitySet="MENU">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="FOOD_ID" ColumnName="FOOD_ID" />
-          <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
-          <ScalarProperty Name="DATE" ColumnName="DATE" />
-          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
-          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
           <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
+          <ScalarProperty Name="FOOD_ID" ColumnName="FOOD_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="NOTIFICATIONs">
       <EntityTypeMapping TypeName="QUANLYCANTEEN_VLUModel.NOTIFICATION">
         <MappingFragment StoreEntitySet="NOTIFICATION">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
-          <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
-          <ScalarProperty Name="DATE" ColumnName="DATE" />
           <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+          <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ORDERs">
       <EntityTypeMapping TypeName="QUANLYCANTEEN_VLUModel.ORDER">
         <MappingFragment StoreEntitySet="ORDER">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="ORDER_CODE" ColumnName="ORDER_CODE" />
-          <ScalarProperty Name="DATE" ColumnName="DATE" />
-          <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
-          <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
-          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
           <ScalarProperty Name="FEEDBACK" ColumnName="FEEDBACK" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+          <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="ORDER_CODE" ColumnName="ORDER_CODE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ORDER_DETAIL">
       <EntityTypeMapping TypeName="QUANLYCANTEEN_VLUModel.ORDER_DETAIL">
         <MappingFragment StoreEntitySet="ORDER_DETAIL">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
-          <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
-          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
           <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+          <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+          <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SLIDERs">
       <EntityTypeMapping TypeName="QUANLYCANTEEN_VLUModel.SLIDER">
         <MappingFragment StoreEntitySet="SLIDER">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
-          <ScalarProperty Name="TEXT" ColumnName="TEXT" />
-          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
           <ScalarProperty Name="IS_VISIBLE" ColumnName="IS_VISIBLE" />
+          <ScalarProperty Name="ORDER" ColumnName="ORDER" />
+          <ScalarProperty Name="TEXT" ColumnName="TEXT" />
+          <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="QUANLYCANTEEN_VLUModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUser">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRole">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

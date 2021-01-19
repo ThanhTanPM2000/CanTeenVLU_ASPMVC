@@ -69,6 +69,17 @@ namespace QuanLyCanTeen.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "Full name is required")]
+        [Display(Name = "Full name")]
+        [StringLength(50, MinimumLength = 3)]
+        public string FULL_NAME { get; set; }
+
+        [Required(ErrorMessage = "Phone is required")]
+        [Display(Name = "Phone")]
+        [RegularExpression(@"(84|0[3|5|7|8|9])+([0-9]{8})\b",
+                           ErrorMessage = "Please enter a valid phone address")]
+        public string PhoneNumber { get; set; }
+
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
@@ -79,6 +90,10 @@ namespace QuanLyCanTeen.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Faculty code is required")]
+        [Display(Name = "Faculty")]
+        public int FACULTY_ID { get; set; }
     }
 
     public class ResetPasswordViewModel

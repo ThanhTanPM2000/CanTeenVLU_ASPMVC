@@ -36,11 +36,11 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,EMAIL,PASSWORD,FULL_NAME,PHONE_NUMBER,STATUS,CUSTOMER_TYPE,FACULTY_ID")] CUSTOMER cUSTOMER)
+        public ActionResult Create([Bind(Include = "Id,Email,PasswordHash,UserName,PhoneNumber,STATUS,CUSTOMER_TYPE,FACULTY_ID")] AspNetUser cUSTOMER)
         {
             if (ModelState.IsValid)
             {
-                db.CUSTOMERs.Add(cUSTOMER);
+                db.AspNetUsers.Add(cUSTOMER);
                 db.SaveChanges();
                 SetAlert("Create Customer successfully", "success");
                 return RedirectToAction("Index");
@@ -57,7 +57,7 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CUSTOMER cUSTOMER = db.CUSTOMERs.Find(id);
+            AspNetUser cUSTOMER = db.AspNetUsers.Find(id);
             if (cUSTOMER == null)
             {
                 return HttpNotFound();
@@ -71,7 +71,7 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,EMAIL,PASSWORD,FULL_NAME,PHONE_NUMBER,STATUS,CUSTOMER_TYPE,FACULTY_ID")] CUSTOMER cUSTOMER)
+        public ActionResult Edit([Bind(Include = "Id,Email,PasswordHash,UserName,PhoneNumber,STATUS,CUSTOMER_TYPE,FACULTY_ID")] AspNetUser cUSTOMER)
         {
             if (ModelState.IsValid)
             {
@@ -86,13 +86,13 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
         }
 
         // GET: Admin/CUSTOMERs/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CUSTOMER cUSTOMER = db.CUSTOMERs.Find(id);
+            AspNetUser cUSTOMER = db.AspNetUsers.Find(id);
             if (cUSTOMER == null)
             {
                 return HttpNotFound();
@@ -103,12 +103,12 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
         // POST: Admin/CUSTOMERs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             try
             {
-                CUSTOMER cUSTOMER = db.CUSTOMERs.Find(id);
-                db.CUSTOMERs.Remove(cUSTOMER);
+                AspNetUser cUSTOMER = db.AspNetUsers.Find(id);
+                db.AspNetUsers.Remove(cUSTOMER);
                 db.SaveChanges();
                 SetAlert("Delete Customer successfully", "success");
                 return RedirectToAction("Index");

@@ -11,7 +11,8 @@ namespace QuanLyCanTeen.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CATEGORY
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,11 +22,23 @@ namespace QuanLyCanTeen.Models
         }
     
         public int ID { get; set; }
+        [Required(ErrorMessage = "Category code is required")]
+        [Display(Name = "Category code")]
         public string CATEGORY_CODE { get; set; }
+
+        [Display(Name = "Name")]
+        [Required(ErrorMessage = "Name is required")]
+        [StringLength(100, MinimumLength = 3)]
         public string CATEGORY_NAME { get; set; }
+
+        [Required(ErrorMessage = "Image is required")]
+        [Display(Name = "Image")]
         public string IMAGE_URL { get; set; }
+
+        [Required(ErrorMessage = "Status is required")]
+        [Display(Name = "Status")]
         public bool STATUS { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FOOD> FOODs { get; set; }
     }

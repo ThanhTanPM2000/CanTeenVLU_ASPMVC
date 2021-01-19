@@ -1,41 +1,27 @@
 ﻿@model QuanLyCanTeen.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LoginLayoutPartial.cshtml";
 }
 
-<h2>@ViewBag.Title.</h2>
-
+<h3>Get more things done with Loggin platform.</h3>
+<p>Access to the most powerfull tool in the entire design and web industry.</p>
+<div class="page-links">
+    <a href="@Url.Action("Login", "Account")">Login</a><a href="@Url.Action("Register", "Account")" class="active">Register</a>
+</div>
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
+    //<input class="form-control" type="text" name="name" placeholder="Full Name" required>
+    <input class="form-control" type="email" name="Email" placeholder="E-mail Address" required>
+    <input class="form-control" type="text" name="FULL_NAME" placeholder="Full Name" required>
+    <input class="form-control" type="number" name="PhoneNumber" placeholder="Phone Number" required>
+    <input class="form-control" type="password" name="Password" placeholder="Password" required>
+    <input class="form-control" type="password" name="ConfirmPassword" placeholder="Confirm Password" required>
+    @Html.DropDownList("FACULTY_ID", null, htmlAttributes: new { @class = "form-control" })
+    <div class="form-button">
+        <button id="submit" type="submit" class="ibtn">Register</button>
     </div>
 }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

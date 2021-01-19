@@ -11,6 +11,61 @@
     <Property Name="STATUS" Type="bit" Nullable="false" />
     <Property Name="ROLE" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="FULL_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="STATUS" Type="bit" Nullable="false" />
+    <Property Name="CUSTOMER_TYPE" Type="int" Nullable="false" />
+    <Property Name="FACULTY_ID" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="CATEGORY">
     <Key>
       <PropertyRef Name="ID" />
@@ -100,10 +155,10 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ORDER_CODE" Type="varchar" MaxLength="12" />
+    <Property Name="ORDER_CODE" Type="varchar" MaxLength="10" />
     <Property Name="DATE" Type="datetime" Nullable="false" />
     <Property Name="ACCOUNT_ID" Type="int" />
-    <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
+    <Property Name="CUSTOMER_ID" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="STATUS" Type="int" Nullable="false" />
     <Property Name="FEEDBACK" Type="nvarchar(max)" />
   </EntityType>
@@ -127,18 +182,6 @@
     <Property Name="ORDER" Type="int" />
     <Property Name="IS_VISIBLE" Type="bit" />
   </EntityType>
-  <Association Name="FK__CUSTOMERS__FACUL__0519C6AF">
-    <End Role="FACULTY" Type="Self.FACULTY" Multiplicity="1" />
-    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FACULTY">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="CUSTOMER">
-        <PropertyRef Name="FACULTY_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__DETAILORD__MENU___22AA2996">
     <End Role="MENU" Type="Self.MENU" Multiplicity="1" />
     <End Role="ORDER_DETAIL" Type="Self.ORDER_DETAIL" Multiplicity="*" />
@@ -223,15 +266,71 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ORDERS__CUST_ID__1CF15040">
-    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
-    <End Role="ORDER" Type="Self.ORDER" Multiplicity="*" />
+  <Association Name="FK_AspNetUsers_FACULTY">
+    <End Role="FACULTY" Type="Self.FACULTY" Multiplicity="1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="CUSTOMER">
+      <Principal Role="FACULTY">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="ORDER">
-        <PropertyRef Name="CUSTOMER_ID" />
+      <Dependent Role="AspNetUsers">
+        <PropertyRef Name="FACULTY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -247,8 +346,25 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ORDER_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="ORDER" Type="Self.ORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ORDER">
+        <PropertyRef Name="CUSTOMER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="QUANLYCANTEEN_VLUModelStoreContainer">
     <EntitySet Name="ACCOUNT" EntityType="Self.ACCOUNT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CONTACT" EntityType="Self.CONTACT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
@@ -260,10 +376,6 @@
     <EntitySet Name="ORDER" EntityType="Self.ORDER" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ORDER_DETAIL" EntityType="Self.ORDER_DETAIL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SLIDER" EntityType="Self.SLIDER" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__CUSTOMERS__FACUL__0519C6AF" Association="Self.FK__CUSTOMERS__FACUL__0519C6AF">
-      <End Role="FACULTY" EntitySet="FACULTY" />
-      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
-    </AssociationSet>
     <AssociationSet Name="FK__DETAILORD__MENU___22AA2996" Association="Self.FK__DETAILORD__MENU___22AA2996">
       <End Role="MENU" EntitySet="MENU" />
       <End Role="ORDER_DETAIL" EntitySet="ORDER_DETAIL" />
@@ -292,13 +404,33 @@
       <End Role="ACCOUNT" EntitySet="ACCOUNT" />
       <End Role="ORDER" EntitySet="ORDER" />
     </AssociationSet>
-    <AssociationSet Name="FK__ORDERS__CUST_ID__1CF15040" Association="Self.FK__ORDERS__CUST_ID__1CF15040">
-      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
-      <End Role="ORDER" EntitySet="ORDER" />
+    <AssociationSet Name="FK_AspNetUsers_FACULTY" Association="Self.FK_AspNetUsers_FACULTY">
+      <End Role="FACULTY" EntitySet="FACULTY" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
     <AssociationSet Name="FK_NOTIFICATION_ACCOUNT" Association="Self.FK_NOTIFICATION_ACCOUNT">
       <End Role="ACCOUNT" EntitySet="ACCOUNT" />
       <End Role="NOTIFICATION" EntitySet="NOTIFICATION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDER_AspNetUsers" Association="Self.FK_ORDER_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="ORDER" EntitySet="ORDER" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -49,7 +49,7 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.ACCOUNT_ID = new SelectList(db.ACCOUNTs, "ID", "EMAIL");
-            ViewBag.CUSTOMER_ID = new SelectList(db.CUSTOMERs, "ID", "EMAIL");
+            ViewBag.CUSTOMER_ID = new SelectList(db.AspNetUsers, "ID", "EMAIL");
             return View();
         }
 
@@ -67,9 +67,9 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
                 SetAlert("Create Order successfully", "success");
                 return RedirectToAction("Index");
             }
-            SetAlert("Create Order successfully", "success");
+            SetAlert("Create Order was failed", "error");
             ViewBag.ACCOUNT_ID = new SelectList(db.ACCOUNTs, "ID", "EMAIL", oRDER.ACCOUNT_ID);
-            ViewBag.CUSTOMER_ID = new SelectList(db.CUSTOMERs, "ID", "EMAIL", oRDER.CUSTOMER_ID);
+            ViewBag.CUSTOMER_ID = new SelectList(db.AspNetUsers, "ID", "EMAIL", oRDER.CUSTOMER_ID);
             return View(oRDER);
         }
 
@@ -86,7 +86,7 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.ACCOUNT_ID = new SelectList(db.ACCOUNTs, "ID", "EMAIL", oRDER.ACCOUNT_ID);
-            ViewBag.CUSTOMER_ID = new SelectList(db.CUSTOMERs, "ID", "EMAIL", oRDER.CUSTOMER_ID);
+            ViewBag.CUSTOMER_ID = new SelectList(db.AspNetUsers, "ID", "EMAIL", oRDER.CUSTOMER_ID);
             return View(oRDER);
         }
 
@@ -106,7 +106,7 @@ namespace QuanLyCanTeen.Areas.Admin.Controllers
             }
             SetAlert("Edit Order was failed", "error");
             ViewBag.ACCOUNT_ID = new SelectList(db.ACCOUNTs, "ID", "EMAIL", oRDER.ACCOUNT_ID);
-            ViewBag.CUSTOMER_ID = new SelectList(db.CUSTOMERs, "ID", "EMAIL", oRDER.CUSTOMER_ID);
+            ViewBag.CUSTOMER_ID = new SelectList(db.AspNetUsers, "ID", "EMAIL", oRDER.CUSTOMER_ID);
             return View(oRDER);
         }
 

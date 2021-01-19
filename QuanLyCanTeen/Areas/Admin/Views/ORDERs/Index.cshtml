@@ -11,13 +11,13 @@
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-7">
-            @using (Html.BeginForm("Index", "CATEGORies", FormMethod.Get))
+            @using (Html.BeginForm("Index", "ORDERs", FormMethod.Get))
             {
                 <input class="form-control" type="text" value="@ViewBag.SearchString" name="searchString" placeholder="What you looking for..." aria-label="Search">
             }
         </div>
         <div class="col-md-5">
-            <a class="btn btn-info" href="@Url.Action("Create","CATEGORies")">Create Order</a>
+            <a class="btn btn-info" href="@Url.Action("Create","ORDERs")">Create Order</a>
         </div>
     </div>
     <br />
@@ -48,7 +48,7 @@
             </th>
             <th>
                 <center>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().CUSTOMER.EMAIL)
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().AspNetUser.Email)
                 </center>
             </th>
             <th>
@@ -80,17 +80,12 @@
                 </td>
                 <td>
                     <center>
-                        @Html.DisplayFor(modelItem => item.FEEDBACK)
-                    </center>
-                </td>
-                <td>
-                    <center>
                         @Html.DisplayFor(modelItem => item.ACCOUNT.EMAIL)
                     </center>
                 </td>
                 <td>
                     <center>
-                        @Html.DisplayFor(modelItem => item.CUSTOMER.EMAIL)
+                        @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                     </center>
                 </td>
                 <td>

@@ -11,15 +11,30 @@ namespace QuanLyCanTeen.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ORDER_DETAIL
     {
+        [Display(Name = "code")]
         public int ID { get; set; }
+
+        [Display(Name = "Order code")]
         public int ORDER_ID { get; set; }
+
+        [Display(Name = "Menu code")]
         public int MENU_ID { get; set; }
+
+        [Required(ErrorMessage = "Quantity is required")]
+        [Display(Name = "Quantity")]
+        [Range(1, Int32.MaxValue)]
         public int QUANTITY { get; set; }
+
+        [Required(ErrorMessage = "Price is required")]
+        [Display(Name = "Price")]
+        [Range(1000, Int32.MaxValue)]
         public int PRICE { get; set; }
-    
+
+
         public virtual MENU MENU { get; set; }
         public virtual ORDER ORDER { get; set; }
     }

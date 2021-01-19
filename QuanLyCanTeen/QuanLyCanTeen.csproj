@@ -207,10 +207,12 @@
     <Compile Include="Areas\Admin\Data\UserLogin.cs" />
     <Compile Include="Areas\Admin\Controllers\dbCommon.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\FoodsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -218,6 +220,19 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CATEGORY.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -270,6 +285,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Ultility\SendEmail.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\SLIDERs\Create.cshtml" />
@@ -285,6 +301,7 @@
     <Content Include="Content\bootstrap.min%28login%29.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\brands.min.css" />
+    <Content Include="Content\dropdown-account-menu.css" />
     <Content Include="Content\elementor-icons.min.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fontawesome%285.12.0%29.min.css" />
@@ -302,6 +319,8 @@
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\post-1518.css" />
     <Content Include="Content\post-2619.css" />
+    <Content Include="Content\post-3092.css" />
+    <Content Include="Content\regular.min.css" />
     <Content Include="Content\slick.css" />
     <Content Include="Content\solid.min.css" />
     <Content Include="Content\splitting-cells.css" />
@@ -309,6 +328,7 @@
     <Content Include="Content\style%281.0.0%29.css" />
     <Content Include="Content\style%2820200508%29.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\style.min%285.4.2%29.css" />
     <Content Include="Content\style.min.css" />
     <Content Include="Content\style5.css" />
     <Content Include="Content\styles%285.2%29.css" />
@@ -325,9 +345,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\banhcanhcua.jpg" />
+    <Content Include="Images\Ca-phe-sua-da.jpg" />
+    <Content Include="Images\che1.jpg" />
+    <Content Include="Images\cualotchiensotThai.jpg" />
+    <Content Include="Images\gakhonam.jpg" />
+    <Content Include="Images\garan.jpg" />
+    <Content Include="Images\gaxaoThai.jpg" />
     <Content Include="Images\graphic2.svg" />
+    <Content Include="Images\hauxaobongcai.jpg" />
+    <Content Include="Images\huong-vi-hoanh-thanh.jpg" />
+    <Content Include="Images\hutieu.jpg" />
     <Content Include="Images\logo-light.svg" />
     <Content Include="Images\logovanlang.png" />
+    <Content Include="Images\nuocchanh.jpg" />
+    <Content Include="Images\Pho.jpg" />
+    <Content Include="Images\Salad.jpg" />
+    <Content Include="Images\suongsao.jpg" />
+    <Content Include="Images\tra-dao-chanh-sa.jpg" />
+    <Content Include="Images\traicay.jpg" />
     <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -1459,15 +1495,15 @@
     <Content Include="Areas\Admin\Views\CONTACTs\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\CONTACTs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CONTACTs\Index.cshtml" />
-    <Content Include="fonts\dashboard.woff" />
-    <Content Include="Areas\Admin\Views\Shared\_AdminLayout - Copy.cshtml" />
     <Content Include="Scripts\canteen.json" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\WooCommerce.woff" />
+    <None Include="Properties\PublishProfiles\FTPProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\cart-fragments.min.js" />
     <Content Include="Scripts\ckFinder.js" />
     <Content Include="Scripts\dialog.min.js" />
+    <Content Include="Scripts\dropdown-account-menu.js" />
     <Content Include="Scripts\effect.min.js" />
     <Content Include="Scripts\forms.min.js" />
     <Content Include="Scripts\frontend-modules.min.js" />
@@ -1490,9 +1526,9 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery.zoom.min.js" />
     <Content Include="Scripts\js.cookie.min.js" />
     <Content Include="Scripts\loader.js" />
-    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\portfolio.js" />
@@ -1508,6 +1544,7 @@
     <Content Include="Scripts\superfish.js" />
     <Content Include="Scripts\svgembedder.min.js" />
     <Content Include="Scripts\swiper.min.js" />
+    <Content Include="Scripts\test.js" />
     <Content Include="Scripts\theia-sticky-sidebar.min.js" />
     <Content Include="Scripts\totop.js" />
     <Content Include="Scripts\v4-shims.min.js" />
@@ -1550,10 +1587,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_Layout - Copy.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Foods\Index.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Shared\_LoginLayoutPartial.cshtml" />
+    <Content Include="Views\Foods\Detail.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Foods\Detail - Copy.cshtml" />
+    <Content Include="Views\Foods\SearchFood.cshtml" />
+    <Content Include="Views\Cart\SuccessfullyOrder.cshtml" />
+    <Content Include="Views\Cart\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

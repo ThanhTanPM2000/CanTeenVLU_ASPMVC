@@ -1,4 +1,6 @@
-﻿using System;
+﻿using QuanLyCanTeen.Areas.Common;
+using QuanLyCanTeen.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +12,11 @@ namespace QuanLyCanTeen.Controllers
     {
         public ActionResult Index()
         {
+            DBEntities db = new DBEntities();
+            ViewData["Categories"] = db.CATEGORies.ToArray();
+            ViewData["Foods"] = db.FOODs.ToArray();
+            ViewData["Menus"] = db.MENUs.ToArray();
+
             return View();
         }
 
